@@ -1,0 +1,24 @@
+# Use an official openjdk runtime as a parent image
+FROM openjdk:17-jdk-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the project dependencies to the container
+COPY pom.xml .
+RUN mvn dependency:go-offline
+
+# Copy the rest of the project files to the container
+COPY . .
+
+# Build the Spring Boot application
+RUN mvn clean package
+
+# Make port 8080 available to the world outside this container
+EXPOSE 8080
+
+# Define environment variable
+ENV JAVA_OPTS="-Xmx512m -Xms256m"
+
+# Run the Spring Boot application when the container launches
+CMD ["sh", "-c", "java $JAVA_OPTS -jar target/*.jar"]

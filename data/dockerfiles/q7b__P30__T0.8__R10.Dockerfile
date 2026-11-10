@@ -1,0 +1,31 @@
+# Use an official .NET runtime as a parent image
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
+WORKDIR /app
+
+# Copy csproj and restore as distinct layers
+COPY *.csproj ./
+RUN dotnet restore
+
+# Copy everything else and build
+COPY . ./
+RUN dotnet publish -c Release -o out
+
+# Use a smaller base image for production
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
+WORKDIR /app
+COPY --from=build-env /app/out .
+
+# Set environment variables for Quartz.NET
+ENV Quartz_Quartz_JobStore_Type=Quartz.Impl.AdoJobStore.JobStoreTX,Quartz
+ENV Quartz_Quartz_JobStore_AdapterType=Quartz.Impl.AdoJobStore.JobStoreTX,Quartz
+ENV Quartz_Quartz_JobStore_DataSource=Default,Quartz
+ENV Quartz_Quartz_JobStore_DataSource_Type=Quartz.Impl.AdoJobStore.StdAdoDelegate,Quartz
+ENV Quartz_Quartz_JobStore_DataSource_DataSource=Default,Quartz
+ENV Quartz_Quartz_JobStore_DataSource_ConnectionString=Server=sqlserver;Database=mydatabase;User Id=myuser;Password=mypassword;
+ENV Quartz_Quartz_JobStore_DataSource_Provider=SqlServer,Quartz
+
+# Expose the port the app runs on (usually 5000 for ASP.NET Core)
+EXPOSE 5000
+
+# Run the app
+ENTRYPOINT ["dotnet", "YourAppName.dll"]

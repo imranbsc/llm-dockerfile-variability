@@ -1,0 +1,17 @@
+# Use a official .NET Core runtime image
+FROM mcr.microsoft.com/dotnet/core/aspnet:6.0
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the application source code into the container
+COPY . /app
+
+# Install any needed packages specified in the project file
+RUN dotnet restore
+
+# Expose the default ASP.NET Core port
+EXPOSE 5000
+
+# Run the application
+ENTRYPOINT ["dotnet", "run"]

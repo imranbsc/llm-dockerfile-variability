@@ -1,0 +1,28 @@
+# Use the official .NET SDK image from Microsoft as the base image
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the project file and restore the dependencies
+COPY *.csproj ./
+RUN dotnet restore
+
+# Copy the rest of the project files and build the project
+COPY . ./
+RUN dotnet publish -c Release -o out
+
+# Use the official .NET runtime image from Microsoft for the production environment
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the published files from the build environment
+COPY --from=build-env /app/out .
+
+# Expose port 80
+EXPOSE 80
+
+# Define the entry point of the application
+ENTRYPOINT ["dotnet", "YourAppName.dll"]

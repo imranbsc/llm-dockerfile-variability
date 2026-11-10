@@ -1,0 +1,26 @@
+# Use an official Go runtime as a parent image
+FROM golang:1.17-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Install dependencies
+RUN go get -v -u
+
+# Build the application
+RUN go build -o batch_job
+
+# Set the environment variable for the cron job
+ENV CRONJOB_PATH /app/batch_job
+
+# Run the cron job using the robfig/cron library
+CMD ["cron", "-f", "-L", "/etc/cron.conf", "/bin/bash", "-c", "cd /app && ./batch_job"]
+
+# Expose the cron job port
+EXPOSE 8080
+
+# Set the environment variable for the cron job port
+ENV CRONJOB_PORT 8080

@@ -1,0 +1,23 @@
+# Use a PHP 7.4 image as the base image
+FROM php:7.4-fpm
+
+# Set the working directory in the container
+WORKDIR /var/www/html
+
+# Copy the composer.json and composer.lock files to the container
+COPY composer.json composer.lock ./
+
+# Install any dependencies using Composer
+RUN composer install --optimize-autoloader
+
+# Copy the rest of the project files to the container
+COPY . .
+
+# Set the environment variable for the timezone
+ENV TZ=UTC
+
+# Expose the default PHP-FPM port
+EXPOSE 9000
+
+# Define the command to run the scheduled batch job
+CMD ["php", "artisan", "schedule:run"]

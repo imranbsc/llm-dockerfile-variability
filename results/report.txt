@@ -1,0 +1,243 @@
+ANALYSIS REPORT
+======================================================================
+
+Answers: 1800. Valid Dockerfiles: 1795 (answers without a Dockerfile and files hadolint could not parse are excluded).
+
+1. Overview
+                        answers  with_dockerfile  parse_errors  valid  cut_off_answers  ignore_pragmas
+model_code temperature                                                                                
+q1.5b      0.0              300              300             0    300                0               0
+           0.8              300              300             2    298                1               0
+q3b        0.0              300              300             0    300                0               0
+           0.8              300              300             3    297                2               0
+q7b        0.0              300              300             0    300                0               0
+           0.8              300              300             0    300                0               0
+
+2. Generation time and speed per model (from runs.csv)
+            answers  median_s_per_answer  median_output_tokens  max_output_tokens  median_tokens_per_s  hours_generating         first_utc          last_utc
+model_code                                                                                                                                                  
+q1.5b           600                5.958               143.000               1024               26.235             1.081  2026-11-09 14:53  2026-11-09 15:58
+q3b             600               37.309               504.000               1024               13.660             6.193  2026-11-09 15:58  2026-11-09 22:09
+q7b             600               28.705               188.000                809                6.590             5.432  2026-11-09 22:10  2026-11-10 03:35
+
+3. Smells per Dockerfile, file level (hl = hadolint, ck = Checkov)
+                        dockerfiles  hl_mean  hl_sd  hl_median  hl_max  pct_smell_free  hl_warn_err_mean  hl_distinct_mean  ck_mean  ck_sd  n_lines_mean
+model_code temperature                                                                                                                                  
+q1.5b      0.0                  300    0.463  0.798      0.000       3          70.000             0.100             0.430    1.967  0.180         7.530
+           0.8                  298    0.574  1.221      0.000      13          70.134             0.198             0.493    2.047  0.255         7.497
+q3b        0.0                  300    0.900  1.330      0.000       4          53.667             0.400             0.900    2.000  0.000         7.320
+           0.8                  297    1.189  3.438      0.000      51          61.953             0.495             0.943    2.030  0.207         8.162
+q7b        0.0                  300    1.100  1.907      0.000       6          60.000             0.503             0.970    2.200  0.401         9.330
+           0.8                  300    0.920  1.517      0.000       7          58.333             0.510             0.880    2.210  0.440         9.007
+
+4. hadolint findings by severity level
+            findings  pct_of_findings  pct_files_with_level
+hl_error          17            1.105                 0.947
+hl_warning       643           41.780                25.738
+hl_info          879           57.115                26.685
+hl_style           0            0.000                 0.000
+
+5. Most frequent hadolint findings (% of valid Dockerfiles)
+          level  files_with_rule  pct_of_dockerfiles  occurrences                                                                                                                                                                                                                             message
+code                                                                                                                                                                                                                                                                                                 
+DL3059     info              291              16.212          425                                                                                                                                                                    Multiple consecutive `RUN` instructions. Consider consolidation.
+DL3015     info              253              14.095          255                                                                                                                                                                   Avoid additional packages by specifying `--no-install-recommends`
+DL3008  warning              216              12.033          218                                                                                                                   Pin versions in apt get install. Instead of `apt-get install <package>` use `apt-get install <package>=<version>`
+DL3009     info              178               9.916          178                                                                                                                                                                Delete the apt lists (/var/lib/apt/lists) after installing something
+DL4006  warning              139               7.744          144  Set the SHELL option -o pipefail before RUN with a pipe in it. If you are using /bin/sh in an alpine image or if your shell is symlinked to busybox then consider explicitly setting your SHELL to /bin/ash, or disable this check
+DL3007  warning              111               6.184          111                                                                                                                          Using latest is prone to errors if the image will ever update. Pin the version explicitly to a release tag
+DL3062  warning               51               2.841           51                                                                                                                                          Pin versions in go. Instead of `go install <package>` use `go install <package>@<version>`
+DL3042  warning               41               2.284           42                                                                                                                                                   Avoid use of cache directory with pip. Use `pip install --no-cache-dir <package>`
+DL3018  warning               20               1.114           21                                                                                                                                           Pin versions in apk add. Instead of `apk add <package>` use `apk add <package>=<version>`
+DL3016  warning               18               1.003           18                                                                                                                                       Pin versions in npm. Instead of `npm install <package>` use `npm install <package>@<version>`
+DL3066     info               18               1.003           18                                                                                                                                                                            Non-numeric user-id may not be resolvable by host system
+DL3023    error               13               0.724           13                                                                                                                                                                                 `COPY --from` cannot reference its own `FROM` alias
+DL3064  warning               11               0.613           23                                                                                                                                                        Potentially sensitive data should not be used in the `ARG` or `ENV` commands
+DL4003  warning                4               0.223            5                                                                                                                        Multiple `CMD` instructions found. If you list more than one `CMD` then only the last `CMD` will take effect
+SC2046  warning                3               0.167            3                                                                                                                                                                                               Quote this to prevent word splitting.
+DL3021    error                2               0.111            2                                                                                                                                                            COPY with more than 2 arguments requires the last argument to end with /
+DL3045  warning                2               0.111            2                                                                                                                                                                             `COPY` to a relative destination without `WORKDIR` set.
+DL3013  warning                2               0.111            2                                                                                   Pin versions in pip. Instead of `pip install <package>` use `pip install <package>==<version>` or `pip install --requirement <requirements file>`
+DL3020    error                1               0.056            1                                                                                                                                                                                       Use COPY instead of ADD for files and folders
+DL3004    error                1               0.056            1                                                                                                                                         Do not use sudo as it leads to unpredictable behavior. Use a tool like gosu to enforce root
+
+6. Most frequent failed Checkov checks (% of valid Dockerfiles)
+               files_with_rule  pct_of_dockerfiles                                                                              check_name
+check_id                                                                                                                                  
+CKV_DOCKER_2              1795             100.000                Ensure that HEALTHCHECK instructions have been added to container images
+CKV_DOCKER_3              1777              98.997                                   Ensure that a user for the container has been created
+CKV_DOCKER_7               111               6.184                                     Ensure the base image uses a non latest version tag
+CKV2_DOCKER_4               40               2.228  Ensure that certificate validation isn't disabled with the pip '--trusted-host' option
+CKV2_DOCKER_1                1               0.056                                                             Ensure that sudo isn't used
+CKV_DOCKER_1                 1               0.056                                                           Ensure port 22 is not exposed
+CKV_DOCKER_4                 1               0.056                                  Ensure that COPY is used instead of ADD in Dockerfiles
+
+7. Run-to-run variability (one cell = one prompt x model x temperature)
+                        cells  mean_similarity  sd_similarity  min_similarity  mean_distinct_dockerfiles  pct_cells_all_identical  mean_distinct_base_images  pct_cells_base_image_changes  mean_smell_instability  pct_cells_smell_count_varies  pct_cells_smell_free_and_smelly
+model_code temperature                                                                                                                                                                                                                                                           
+q1.5b      0.0             30            0.980          0.028           0.907                      1.467                   53.333                      1.033                         3.333                   0.037                         3.333                            0.000
+           0.8             30            0.454          0.187           0.184                      9.300                    0.000                      4.567                       100.000                   1.000                        80.000                           80.000
+q3b        0.0             30            0.977          0.024           0.923                      1.600                   40.000                      1.067                         6.667                   0.107                         6.667                            3.333
+           0.8             30            0.455          0.197           0.194                      9.233                    0.000                      4.800                       100.000                   1.000                        60.000                           53.333
+q7b        0.0             30            0.991          0.018           0.938                      1.267                   73.333                      1.000                         0.000                   0.169                         6.667                            6.667
+           0.8             30            0.595          0.177           0.264                      8.200                    0.000                      2.167                        76.667                   0.876                        63.333                           56.667
+
+8. Temperature 0: 26 of 90 prompt x model cells gave byte-identical raw answers in every run.
+            identical_cells  cells
+model_code                        
+q1.5b                    10     30
+q3b                       1     30
+q7b                      15     30
+
+9. Per-prompt values used in the tests (M, SD, Mdn over prompts)
+   similarity:
+                        n_prompts     M    SD   Mdn
+model_code temperature                             
+q1.5b      0.0                 30 0.980 0.028 1.000
+           0.8                 30 0.454 0.187 0.404
+q3b        0.0                 30 0.977 0.024 0.982
+           0.8                 30 0.455 0.197 0.429
+q7b        0.0                 30 0.991 0.018 1.000
+           0.8                 30 0.595 0.177 0.586
+   hl_total:
+                        n_prompts     M    SD   Mdn
+model_code temperature                             
+q1.5b      0.0                 30 0.463 0.809 0.000
+           0.8                 30 0.573 0.555 0.400
+q3b        0.0                 30 0.900 1.348 0.000
+           0.8                 30 1.181 2.065 0.400
+q7b        0.0                 30 1.100 1.934 0.000
+           0.8                 30 0.920 1.303 0.400
+
+10. Exploratory: by technology stack
+         hl_mean  hl_sd  pct_smell_free  similarity_T0  similarity_T0.8
+stack                                                                  
+C#/.NET    0.523  0.809          62.752          0.983            0.399
+Go         0.950  0.655          22.667          0.979            0.362
+Java       0.443  0.822          73.000          0.994            0.486
+Node.js    0.074  0.310          93.603          0.986            0.679
+PHP        2.983  3.735          36.333          0.966            0.345
+Python     0.160  0.464          86.000          0.988            0.739
+
+11. Exploratory: by application type
+           hl_mean  hl_sd  pct_smell_free  similarity_T0  similarity_T0.8
+scenario                                                                 
+batch_job    1.067  1.551          52.528          0.976            0.441
+cli          0.561  1.070          69.444          0.988            0.526
+rest_api     0.875  1.502          60.833          0.983            0.544
+web_app      0.792  1.590          63.889          0.990            0.533
+worker       0.994  3.137          64.903          0.976            0.464
+
+12. Statistical tests
+
+--- H1 and RQ3: run-to-run similarity (higher = less variable)  (measure: mean_similarity; 30 prompts with all 6 conditions)
+
+   Normality of the residuals (Shapiro-Wilk, 180 residuals): W=0.984, p=0.034  ->  test used in the paper: ART ANOVA (aligned rank transform)
+
+   Two-way repeated-measures ANOVA  (robustness check)
+                          ddof1  ddof2       F p_uncorrected  W_spher p_spher   eps  corrected  df1_used  df2_used       p   np2
+Source                                                                                                                          
+Temperature                   1     29 256.632        <0.001      NaN   1.000 1.000      False     1.000    29.000  <0.001 0.898
+Model size                    2     58  21.403        <0.001    0.671   0.004 0.752       True     1.504    43.626  <0.001 0.425
+Temperature x Model size      2     58  17.345        <0.001    0.664   0.003 0.749       True     1.498    43.428  <0.001 0.374
+
+   ART ANOVA on aligned ranks  <- REPORT THIS
+                          ddof1  ddof2       F p_uncorrected  W_spher p_spher   eps  corrected  df1_used  df2_used       p   np2
+Source                                                                                                                          
+Temperature                   1     29 494.746        <0.001      NaN   1.000 1.000      False     1.000    29.000  <0.001 0.945
+Model size                    2     58  45.338        <0.001    0.883   0.175 0.895      False     2.000    58.000  <0.001 0.610
+Temperature x Model size      2     58  36.919        <0.001    0.793   0.039 0.829       True     1.657    48.066  <0.001 0.560
+   Alignment check: largest F of the non-target effects on aligned data = 1.87e-13 (should be about 0)
+
+   Model sizes compared pairwise (averaged over temperature; Wilcoxon signed-rank tests, Holm-corrected)
+               n  M_diff  Mdn_diff       W       p   r_rb  p_holm
+pair                                                             
+q1.5b vs q3b  30   0.001     0.000 223.000   0.855  0.041   0.855
+q1.5b vs q7b  30  -0.076    -0.075  37.000  <0.001 -0.841  <0.001
+q3b vs q7b    30  -0.077    -0.065  38.000  <0.001 -0.837  <0.001
+
+   Temperature within each model (simple effects, Holm-corrected over the 3 models)
+                    n  M_diff  Mdn_diff     W       p  r_rb  p_holm
+pair                                                               
+q1.5b: T0 vs T0.8  30   0.526     0.579 0.000  <0.001 1.000  <0.001
+q3b: T0 vs T0.8    30   0.522     0.539 0.000  <0.001 1.000  <0.001
+q7b: T0 vs T0.8    30   0.395     0.411 0.000  <0.001 1.000  <0.001
+
+   Linear trend over model size (weights -1, 0, +1; negative = fewer with larger models): n=30, M_contrast=0.076, SD_contrast=0.078, W=37.000, p=<0.001, r_rb=0.841
+
+--- H2 and RQ3: smells per Dockerfile (hadolint)  (measure: hl_total; 30 prompts with all 6 conditions)
+
+   Normality of the residuals (Shapiro-Wilk, 180 residuals): W=0.890, p=<0.001  ->  test used in the paper: ART ANOVA (aligned rank transform)
+
+   Two-way repeated-measures ANOVA  (robustness check)
+                          ddof1  ddof2     F p_uncorrected  W_spher p_spher   eps  corrected  df1_used  df2_used      p   np2
+Source                                                                                                                       
+Temperature                   1     29 0.713         0.405      NaN   1.000 1.000      False     1.000    29.000  0.405 0.024
+Model size                    2     58 2.459         0.094    0.435  <0.001 0.639       True     1.278    37.072  0.118 0.078
+Temperature x Model size      2     58 1.678         0.196    0.762   0.022 0.808       True     1.616    46.863  0.202 0.055
+
+   ART ANOVA on aligned ranks  <- REPORT THIS
+                          ddof1  ddof2     F p_uncorrected  W_spher p_spher   eps  corrected  df1_used  df2_used      p   np2
+Source                                                                                                                       
+Temperature                   1     29 6.476         0.017      NaN   1.000 1.000      False     1.000    29.000  0.017 0.183
+Model size                    2     58 0.577         0.565    0.718   0.010 0.780       True     1.561    45.257  0.524 0.020
+Temperature x Model size      2     58 3.480         0.037    0.971   0.659 0.972      False     2.000    58.000  0.037 0.107
+   Alignment check: largest F of the non-target effects on aligned data = 2.86e-17 (should be about 0)
+
+   Model sizes compared pairwise (averaged over temperature; Wilcoxon signed-rank tests, Holm-corrected)
+               n  M_diff  Mdn_diff       W      p   r_rb p_holm
+pair                                                           
+q1.5b vs q3b  30  -0.522    -0.032 109.000  0.241 -0.273  0.724
+q1.5b vs q7b  30  -0.492    -0.025 145.500  0.446 -0.171  0.892
+q3b vs q7b    30   0.030     0.000 129.000  0.784  0.065  0.892
+
+   Temperature within each model (simple effects, Holm-corrected over the 3 models)
+                    n  M_diff  Mdn_diff       W      p   r_rb p_holm
+pair                                                                
+q1.5b: T0 vs T0.8  30  -0.110    -0.200 103.000  0.179 -0.313  0.537
+q3b: T0 vs T0.8    30  -0.281     0.000  46.000  0.255 -0.324  0.537
+q7b: T0 vs T0.8    30   0.180     0.000  82.500  0.615  0.132  0.615
+
+   Linear trend over model size (weights -1, 0, +1; negative = fewer with larger models): n=30, M_contrast=0.492, SD_contrast=1.720, W=145.500, p=0.446, r_rb=0.171
+
+--- Sensitivity check: hadolint warnings and errors only  (measure: hl_warn_err; 30 prompts with all 6 conditions)
+
+   Normality of the residuals (Shapiro-Wilk, 180 residuals): W=0.951, p=<0.001  ->  test used in the paper: ART ANOVA (aligned rank transform)
+
+   Two-way repeated-measures ANOVA  (robustness check)
+                          ddof1  ddof2     F p_uncorrected  W_spher p_spher   eps  corrected  df1_used  df2_used      p   np2
+Source                                                                                                                       
+Temperature                   1     29 4.326         0.046      NaN   1.000 1.000      False     1.000    29.000  0.046 0.130
+Model size                    2     58 5.418         0.007    0.666   0.003 0.750       True     1.499    43.475  0.014 0.157
+Temperature x Model size      2     58 0.805         0.452    0.975   0.702 0.976      False     2.000    58.000  0.452 0.027
+
+   ART ANOVA on aligned ranks  <- REPORT THIS
+                          ddof1  ddof2      F p_uncorrected  W_spher p_spher   eps  corrected  df1_used  df2_used      p   np2
+Source                                                                                                                        
+Temperature                   1     29 10.862         0.003      NaN   1.000 1.000      False     1.000    29.000  0.003 0.272
+Model size                    2     58  0.552         0.579    0.800   0.044 0.833       True     1.666    48.322  0.548 0.019
+Temperature x Model size      2     58  4.417         0.016    0.954   0.514 0.956      False     2.000    58.000  0.016 0.132
+   Alignment check: largest F of the non-target effects on aligned data = 9.12e-15 (should be about 0)
+
+   Model sizes compared pairwise (averaged over temperature; Wilcoxon signed-rank tests, Holm-corrected)
+               n  M_diff  Mdn_diff      W      p   r_rb p_holm
+pair                                                          
+q1.5b vs q3b  30  -0.298     0.000 75.500  0.164 -0.346  0.328
+q1.5b vs q7b  30  -0.358    -0.100 76.000  0.011 -0.567  0.034
+q3b vs q7b    30  -0.060     0.000 80.000  0.217 -0.307  0.328
+
+   Temperature within each model (simple effects, Holm-corrected over the 3 models)
+                    n  M_diff  Mdn_diff      W      p   r_rb p_holm
+pair                                                               
+q1.5b: T0 vs T0.8  30  -0.097    -0.200 67.000  0.017 -0.553  0.051
+q3b: T0 vs T0.8    30  -0.093     0.000 36.500  0.103 -0.463  0.206
+q7b: T0 vs T0.8    30  -0.007     0.000 64.000  0.836 -0.059  0.836
+
+   Linear trend over model size (weights -1, 0, +1; negative = fewer with larger models): n=30, M_contrast=0.358, SD_contrast=0.650, W=76.000, p=0.011, r_rb=0.567
+
+How to read this: F tests whether the factor changes the measure; p is the probability
+of an effect at least this large if there were no real effect (reject H0 if p <= .05).
+np2 (partial eta squared) is the effect size: about .01 small, .06 medium, .14 large.
+eps is the Greenhouse-Geisser epsilon; 'corrected' says whether it was applied.
+p_holm is p corrected for running several tests. d_z and r_rb are effect sizes
+of the pairwise comparisons.

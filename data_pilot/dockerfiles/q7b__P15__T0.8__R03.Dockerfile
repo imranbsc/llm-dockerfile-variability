@@ -1,0 +1,25 @@
+# Use an official OpenJDK runtime as a parent image
+FROM openjdk:17-jdk-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the local pom.xml to the working directory
+COPY pom.xml .
+
+# Build the application using Maven
+RUN mvn clean package -DskipTests
+
+# Copy the generated JAR file from the target directory to the working directory
+COPY target/*.jar app.jar
+
+# Expose the application's port
+EXPOSE 8080
+
+# Set environment variable for PostgreSQL connection
+ENV SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/mydb
+ENV SPRING_DATASOURCE_USERNAME=myuser
+ENV SPRING_DATASOURCE_PASSWORD=mypassword
+
+# Run the application
+CMD ["java", "-jar", "app.jar"]

@@ -1,0 +1,31 @@
+prompt_id,stack,scenario,app
+P01,Python Flask,minimal,a Python Flask web API that listens on port 5000; its dependencies are listed in requirements.txt
+P02,Python Flask,system_package,"a Python Flask web API that listens on port 5000 and converts uploaded images with the ImageMagick command-line tool, which must be installed in the image; its dependencies are listed in requirements.txt"
+P03,Python Flask,database,a Python Flask web API that listens on port 5000 and stores data in a PostgreSQL database whose connection settings come from environment variables; its dependencies are listed in requirements.txt
+P04,Python FastAPI,minimal,a Python FastAPI web API that listens on port 8000; its dependencies are listed in requirements.txt
+P05,Python FastAPI,system_package,"a Python FastAPI web API that listens on port 8000 and converts uploaded images with the ImageMagick command-line tool, which must be installed in the image; its dependencies are listed in requirements.txt"
+P06,Python FastAPI,database,a Python FastAPI web API that listens on port 8000 and stores data in a PostgreSQL database whose connection settings come from environment variables; its dependencies are listed in requirements.txt
+P07,Node.js Express,minimal,a Node.js Express web API that listens on port 3000; its dependencies are listed in package.json
+P08,Node.js Express,system_package,"a Node.js Express web API that listens on port 3000 and converts uploaded images with the ImageMagick command-line tool, which must be installed in the image; its dependencies are listed in package.json"
+P09,Node.js Express,database,a Node.js Express web API that listens on port 3000 and stores data in a PostgreSQL database whose connection settings come from environment variables; its dependencies are listed in package.json
+P10,TypeScript NestJS,minimal,a TypeScript NestJS web API that listens on port 3000; its dependencies are listed in package.json
+P11,TypeScript NestJS,system_package,"a TypeScript NestJS web API that listens on port 3000 and converts uploaded images with the ImageMagick command-line tool, which must be installed in the image; its dependencies are listed in package.json"
+P12,TypeScript NestJS,database,a TypeScript NestJS web API that listens on port 3000 and stores data in a PostgreSQL database whose connection settings come from environment variables; its dependencies are listed in package.json
+P13,Java Spring Boot,minimal,a Java Spring Boot web API that listens on port 8080; its dependencies are listed in pom.xml
+P14,Java Spring Boot,system_package,"a Java Spring Boot web API that listens on port 8080 and converts uploaded images with the ImageMagick command-line tool, which must be installed in the image; its dependencies are listed in pom.xml"
+P15,Java Spring Boot,database,a Java Spring Boot web API that listens on port 8080 and stores data in a PostgreSQL database whose connection settings come from environment variables; its dependencies are listed in pom.xml
+P16,Go net/http,minimal,a Go web API that listens on port 8080; its dependencies are listed in go.mod
+P17,Go net/http,system_package,"a Go web API that listens on port 8080 and converts uploaded images with the ImageMagick command-line tool, which must be installed in the image; its dependencies are listed in go.mod"
+P18,Go net/http,database,a Go web API that listens on port 8080 and stores data in a PostgreSQL database whose connection settings come from environment variables; its dependencies are listed in go.mod
+P19,C# ASP.NET Core,minimal,an ASP.NET Core web API that listens on port 8080; its dependencies are listed in the .csproj file
+P20,C# ASP.NET Core,system_package,"an ASP.NET Core web API that listens on port 8080 and converts uploaded images with the ImageMagick command-line tool, which must be installed in the image; its dependencies are listed in the .csproj file"
+P21,C# ASP.NET Core,database,an ASP.NET Core web API that listens on port 8080 and stores data in a PostgreSQL database whose connection settings come from environment variables; its dependencies are listed in the .csproj file
+P22,PHP Laravel,minimal,a PHP Laravel web API that listens on port 8000; its dependencies are listed in composer.json
+P23,PHP Laravel,system_package,"a PHP Laravel web API that listens on port 8000 and converts uploaded images with the ImageMagick command-line tool, which must be installed in the image; its dependencies are listed in composer.json"
+P24,PHP Laravel,database,a PHP Laravel web API that listens on port 8000 and stores data in a PostgreSQL database whose connection settings come from environment variables; its dependencies are listed in composer.json
+P25,Ruby on Rails,minimal,a Ruby on Rails web API that listens on port 3000; its dependencies are listed in Gemfile
+P26,Ruby on Rails,system_package,"a Ruby on Rails web API that listens on port 3000 and converts uploaded images with the ImageMagick command-line tool, which must be installed in the image; its dependencies are listed in Gemfile"
+P27,Ruby on Rails,database,a Ruby on Rails web API that listens on port 3000 and stores data in a PostgreSQL database whose connection settings come from environment variables; its dependencies are listed in Gemfile
+P28,Rust Axum,minimal,a Rust Axum web API that listens on port 8080; its dependencies are listed in Cargo.toml
+P29,Rust Axum,system_package,"a Rust Axum web API that listens on port 8080 and converts uploaded images with the ImageMagick command-line tool, which must be installed in the image; its dependencies are listed in Cargo.toml"
+P30,Rust Axum,database,a Rust Axum web API that listens on port 8080 and stores data in a PostgreSQL database whose connection settings come from environment variables; its dependencies are listed in Cargo.toml

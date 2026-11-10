@@ -1,0 +1,52 @@
+ANALYSIS REPORT
+======================================================================
+
+Dockerfiles analysed: 36 of 36 answers (answers without a Dockerfile and files hadolint could not parse are excluded).
+
+1. Overview
+                        answers  with_dockerfile  parse_errors  cut_off_answers  ignore_pragmas
+model_code temperature                                                                         
+q1.5b      0.0                6                6             0                0               0
+           0.8                6                6             0                0               0
+q3b        0.0                6                6             0                0               0
+           0.8                6                6             0                0               0
+q7b        0.0                6                6             0                0               0
+           0.8                6                6             0                0               0
+
+2. Smells per Dockerfile (hl = hadolint, ck = Checkov)
+                        dockerfiles  hl_mean  hl_sd  hl_median  hl_pct_with_any  hl_warn_err_mean  hl_distinct_mean  ck_mean  ck_sd  ck_pct_with_any
+model_code temperature                                                                                                                              
+q1.5b      0.0                    6    1.000  1.095      1.000           50.000             1.000             0.500    2.000  0.000          100.000
+           0.8                    6    0.500  0.837      0.000           33.333             0.500             0.333    2.167  0.408          100.000
+q3b        0.0                    6    0.500  0.548      0.500           50.000             0.500             0.500    2.000  0.000          100.000
+           0.8                    6    0.833  1.169      0.500           50.000             0.667             0.667    2.000  0.000          100.000
+q7b        0.0                    6    1.000  1.095      1.000           50.000             1.000             0.500    2.000  0.000          100.000
+           0.8                    6    1.500  1.049      1.500           83.333             1.500             0.833    2.333  0.516          100.000
+
+3. Most frequent hadolint findings (% of Dockerfiles)
+          level  files_with_rule  pct_of_dockerfiles
+code                                                
+DL3064  warning               15              41.667
+DL3042  warning                4              11.111
+DL3059     info                1               2.778
+
+4. Most frequent failed Checkov checks (% of Dockerfiles)
+               files_with_rule  pct_of_dockerfiles
+check_id                                          
+CKV_DOCKER_2                36             100.000
+CKV_DOCKER_3                36             100.000
+CKV2_DOCKER_4                3               8.333
+
+5. Run-to-run variability (one cell = one prompt x model x temperature)
+                        cells  mean_distinct_dockerfiles  pct_cells_all_identical  mean_similarity  sd_similarity  mean_distinct_base_images  mean_unstable_rules
+model_code temperature                                                                                                                                           
+q1.5b      0.0              2                      1.500                   50.000            0.963          0.052                      1.500                0.000
+           0.8              2                      3.000                    0.000            0.498          0.039                      2.000                1.000
+q3b        0.0              2                      1.000                  100.000            1.000          0.000                      1.000                0.000
+           0.8              2                      3.000                    0.000            0.402          0.024                      2.000                1.500
+q7b        0.0              2                      1.500                   50.000            0.963          0.052                      1.000                0.000
+           0.8              2                      3.000                    0.000            0.663          0.207                      1.500                0.500
+
+6. Temperature 0: 4 of 6 prompt x model cells gave byte-identical answers in every run.
+
+7. Statistical tests skipped: only 2 prompts (need at least 6). This is expected for the pilot.

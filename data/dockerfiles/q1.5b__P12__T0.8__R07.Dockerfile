@@ -1,0 +1,17 @@
+# Use an official OpenJDK runtime as a parent image
+FROM openjdk:11-jdk-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the dependencies file from the current directory to the container
+COPY pom.xml /app
+
+# Install any needed packages specified in the Dockerfile
+RUN mvn clean install
+
+# Add the rest of the application files to the container
+COPY src /app/src
+
+# Set the entry point of the container
+ENTRYPOINT ["java", "-cp", "target/classes:target/lib/*", "com.example.demo.DemoApplication"]

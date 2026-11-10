@@ -1,0 +1,17 @@
+# Use an official Go runtime as a parent image
+FROM golang:1.16-alpine
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Install any needed packages specified in requirements.txt
+RUN go get -u -v
+
+# Create a simple Go file for the background worker
+RUN echo -e "package main\nimport (\n\t\"fmt\"\n\t\"github.com/Shopify/asyncq\"\n)\n\nfunc main() {\n\tctx := asyncq.NewContext()\n\n\t// Create a new job\n\tjob := asyncq.NewJob(ctx, \"example-job\", \"hello world\")\n\n\t// Enqueue the job\n\terr := asyncq.Enqueue(ctx, job)\n\tif err != nil {\n\t\tfmt.Println(err)\n\t\treturn\n\t}\n\n\t// Block until the job is completed\n\tresult, err := asyncq.Get(ctx, job)\n\tif err != nil {\n\t\tfmt.Println(err)\n\t\treturn\n\t}\n\n\tfmt.Println(result)\n}" > background-worker.go
+
+# Run the app
+CMD ["go", "run", "background-worker.go"]

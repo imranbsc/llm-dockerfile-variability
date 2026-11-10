@@ -1,0 +1,37 @@
+run_id,model,model_code,prompt_id,stack,scenario,temperature,seed,run,done_reason,output_tokens,extraction,has_dockerfile,parse_ok,hl_total,hl_distinct,hl_error,hl_warning,hl_info,hl_style,hl_rules,ck_failed,ck_checks,ignore_pragma,n_lines,base_images,norm_sha
+q1.5b__P01__T0.0__R01,qwen2.5-coder:1.5b,q1.5b,P01,Python Flask,minimal,0.0,1,1,stop,134,fenced_label,1,1,0,0,0,0,0,0,,2,CKV_DOCKER_2;CKV_DOCKER_3,0,7,python:3.9-slim,c16cebb655263281
+q1.5b__P01__T0.0__R02,qwen2.5-coder:1.5b,q1.5b,P01,Python Flask,minimal,0.0,2,2,stop,134,fenced_label,1,1,0,0,0,0,0,0,,2,CKV_DOCKER_2;CKV_DOCKER_3,0,7,python:3.9-slim,c16cebb655263281
+q1.5b__P01__T0.0__R03,qwen2.5-coder:1.5b,q1.5b,P01,Python Flask,minimal,0.0,3,3,stop,134,fenced_label,1,1,0,0,0,0,0,0,,2,CKV_DOCKER_2;CKV_DOCKER_3,0,7,python:3.9-slim,c16cebb655263281
+q1.5b__P01__T0.8__R01,qwen2.5-coder:1.5b,q1.5b,P01,Python Flask,minimal,0.8,1,1,stop,133,fenced_label,1,1,0,0,0,0,0,0,,2,CKV_DOCKER_2;CKV_DOCKER_3,0,7,python:3.8-slim,410569e1e6025cf6
+q1.5b__P01__T0.8__R02,qwen2.5-coder:1.5b,q1.5b,P01,Python Flask,minimal,0.8,2,2,stop,130,fenced_label,1,1,1,1,0,1,0,0,DL3042,3,CKV2_DOCKER_4;CKV_DOCKER_2;CKV_DOCKER_3,0,6,python:3.9-slim,630f43cc73862140
+q1.5b__P01__T0.8__R03,qwen2.5-coder:1.5b,q1.5b,P01,Python Flask,minimal,0.8,3,3,stop,121,fenced_label,1,1,0,0,0,0,0,0,,2,CKV_DOCKER_2;CKV_DOCKER_3,0,6,python:3.9-slim,609e64f28314b819
+q1.5b__P15__T0.0__R01,qwen2.5-coder:1.5b,q1.5b,P15,Java Spring Boot,database,0.0,1,1,stop,179,fenced_label,1,1,2,1,0,2,0,0,DL3064,2,CKV_DOCKER_2;CKV_DOCKER_3,0,9,openjdk:11-jre-slim,46a85991248a9d25
+q1.5b__P15__T0.0__R02,qwen2.5-coder:1.5b,q1.5b,P15,Java Spring Boot,database,0.0,2,2,stop,177,fenced_label,1,1,2,1,0,2,0,0,DL3064,2,CKV_DOCKER_2;CKV_DOCKER_3,0,9,openjdk:11-jdk-slim,43a4b7bc82cbcfc4
+q1.5b__P15__T0.0__R03,qwen2.5-coder:1.5b,q1.5b,P15,Java Spring Boot,database,0.0,3,3,stop,177,fenced_label,1,1,2,1,0,2,0,0,DL3064,2,CKV_DOCKER_2;CKV_DOCKER_3,0,9,openjdk:11-jdk-slim,43a4b7bc82cbcfc4
+q1.5b__P15__T0.8__R01,qwen2.5-coder:1.5b,q1.5b,P15,Java Spring Boot,database,0.8,1,1,stop,210,fenced_label,1,1,2,1,0,2,0,0,DL3064,2,CKV_DOCKER_2;CKV_DOCKER_3,0,9,openjdk:17-jdk-slim,3b68044a51159433
+q1.5b__P15__T0.8__R02,qwen2.5-coder:1.5b,q1.5b,P15,Java Spring Boot,database,0.8,2,2,stop,211,fenced_label,1,1,0,0,0,0,0,0,,2,CKV_DOCKER_2;CKV_DOCKER_3,0,5,openjdk:11-jdk-slim,41f5fd91208f6309
+q1.5b__P15__T0.8__R03,qwen2.5-coder:1.5b,q1.5b,P15,Java Spring Boot,database,0.8,3,3,stop,180,fenced_label,1,1,0,0,0,0,0,0,,2,CKV_DOCKER_2;CKV_DOCKER_3,0,6,openjdk:11-jdk-slim,48bf70b63b363511
+q3b__P01__T0.0__R01,qwen2.5-coder:3b,q3b,P01,Python Flask,minimal,0.0,1,1,stop,122,fenced_label,1,1,0,0,0,0,0,0,,2,CKV_DOCKER_2;CKV_DOCKER_3,0,6,python:3.8-slim,2fb35c04f4f5b000
+q3b__P01__T0.0__R02,qwen2.5-coder:3b,q3b,P01,Python Flask,minimal,0.0,2,2,stop,122,fenced_label,1,1,0,0,0,0,0,0,,2,CKV_DOCKER_2;CKV_DOCKER_3,0,6,python:3.8-slim,2fb35c04f4f5b000
+q3b__P01__T0.0__R03,qwen2.5-coder:3b,q3b,P01,Python Flask,minimal,0.0,3,3,stop,122,fenced_label,1,1,0,0,0,0,0,0,,2,CKV_DOCKER_2;CKV_DOCKER_3,0,6,python:3.8-slim,2fb35c04f4f5b000
+q3b__P01__T0.8__R01,qwen2.5-coder:3b,q3b,P01,Python Flask,minimal,0.8,1,1,stop,43,fenced_from,1,1,1,1,0,1,0,0,DL3042,2,CKV_DOCKER_2;CKV_DOCKER_3,0,6,python:3.9-slim,f9d24ef0ab59429c
+q3b__P01__T0.8__R02,qwen2.5-coder:3b,q3b,P01,Python Flask,minimal,0.8,2,2,stop,123,fenced_label,1,1,0,0,0,0,0,0,,2,CKV_DOCKER_2;CKV_DOCKER_3,0,6,python:3.8-slim,1eedebf97928660f
+q3b__P01__T0.8__R03,qwen2.5-coder:3b,q3b,P01,Python Flask,minimal,0.8,3,3,stop,130,fenced_label,1,1,0,0,0,0,0,0,,2,CKV_DOCKER_2;CKV_DOCKER_3,0,7,python:3.8-slim,410569e1e6025cf6
+q3b__P15__T0.0__R01,qwen2.5-coder:3b,q3b,P15,Java Spring Boot,database,0.0,1,1,stop,211,fenced_label,1,1,1,1,0,1,0,0,DL3064,2,CKV_DOCKER_2;CKV_DOCKER_3,0,9,openjdk:17-jdk-slim,0883c8c0fb68e2ba
+q3b__P15__T0.0__R02,qwen2.5-coder:3b,q3b,P15,Java Spring Boot,database,0.0,2,2,stop,211,fenced_label,1,1,1,1,0,1,0,0,DL3064,2,CKV_DOCKER_2;CKV_DOCKER_3,0,9,openjdk:17-jdk-slim,0883c8c0fb68e2ba
+q3b__P15__T0.0__R03,qwen2.5-coder:3b,q3b,P15,Java Spring Boot,database,0.0,3,3,stop,211,fenced_label,1,1,1,1,0,1,0,0,DL3064,2,CKV_DOCKER_2;CKV_DOCKER_3,0,9,openjdk:17-jdk-slim,0883c8c0fb68e2ba
+q3b__P15__T0.8__R01,qwen2.5-coder:3b,q3b,P15,Java Spring Boot,database,0.8,1,1,stop,412,fenced_from,1,1,0,0,0,0,0,0,,2,CKV_DOCKER_2;CKV_DOCKER_3,0,5,openjdk:11-jdk-slim,6790679ff6a44c2a
+q3b__P15__T0.8__R02,qwen2.5-coder:3b,q3b,P15,Java Spring Boot,database,0.8,2,2,stop,278,fenced_label,1,1,1,1,0,1,0,0,DL3064,2,CKV_DOCKER_2;CKV_DOCKER_3,0,10,openjdk:17-jdk-slim,6234c3113afb62e1
+q3b__P15__T0.8__R03,qwen2.5-coder:3b,q3b,P15,Java Spring Boot,database,0.8,3,3,stop,239,fenced_label,1,1,3,2,0,2,1,0,DL3059;DL3064,2,CKV_DOCKER_2;CKV_DOCKER_3,0,11,openjdk:17-jdk-slim,e9a98c02d74b92ba
+q7b__P01__T0.0__R01,qwen2.5-coder:7b,q7b,P01,Python Flask,minimal,0.0,1,1,stop,131,fenced_label,1,1,0,0,0,0,0,0,,2,CKV_DOCKER_2;CKV_DOCKER_3,0,7,python:3.9-slim,c16cebb655263281
+q7b__P01__T0.0__R02,qwen2.5-coder:7b,q7b,P01,Python Flask,minimal,0.0,2,2,stop,131,fenced_label,1,1,0,0,0,0,0,0,,2,CKV_DOCKER_2;CKV_DOCKER_3,0,7,python:3.9-slim,c16cebb655263281
+q7b__P01__T0.0__R03,qwen2.5-coder:7b,q7b,P01,Python Flask,minimal,0.0,3,3,stop,131,fenced_label,1,1,0,0,0,0,0,0,,2,CKV_DOCKER_2;CKV_DOCKER_3,0,7,python:3.9-slim,c16cebb655263281
+q7b__P01__T0.8__R01,qwen2.5-coder:7b,q7b,P01,Python Flask,minimal,0.8,1,1,stop,131,fenced_from,1,1,1,1,0,1,0,0,DL3042,3,CKV2_DOCKER_4;CKV_DOCKER_2;CKV_DOCKER_3,0,7,python:3.8-slim,9c885a5711037e6f
+q7b__P01__T0.8__R02,qwen2.5-coder:7b,q7b,P01,Python Flask,minimal,0.8,2,2,stop,133,fenced_label,1,1,1,1,0,1,0,0,DL3042,3,CKV2_DOCKER_4;CKV_DOCKER_2;CKV_DOCKER_3,0,7,python:3.9-slim,19f9333ed48893f7
+q7b__P01__T0.8__R03,qwen2.5-coder:7b,q7b,P01,Python Flask,minimal,0.8,3,3,stop,130,fenced_label,1,1,0,0,0,0,0,0,,2,CKV_DOCKER_2;CKV_DOCKER_3,0,7,python:3.9-slim,c16cebb655263281
+q7b__P15__T0.0__R01,qwen2.5-coder:7b,q7b,P15,Java Spring Boot,database,0.0,1,1,stop,170,fenced_label,1,1,2,1,0,2,0,0,DL3064,2,CKV_DOCKER_2;CKV_DOCKER_3,0,9,openjdk:17-jdk-slim,e74a001f20688a82
+q7b__P15__T0.0__R02,qwen2.5-coder:7b,q7b,P15,Java Spring Boot,database,0.0,2,2,stop,165,fenced_label,1,1,2,1,0,2,0,0,DL3064,2,CKV_DOCKER_2;CKV_DOCKER_3,0,9,openjdk:17-jdk-slim,130ab29ec7da6b0e
+q7b__P15__T0.0__R03,qwen2.5-coder:7b,q7b,P15,Java Spring Boot,database,0.0,3,3,stop,165,fenced_label,1,1,2,1,0,2,0,0,DL3064,2,CKV_DOCKER_2;CKV_DOCKER_3,0,9,openjdk:17-jdk-slim,130ab29ec7da6b0e
+q7b__P15__T0.8__R01,qwen2.5-coder:7b,q7b,P15,Java Spring Boot,database,0.8,1,1,stop,172,fenced_from,1,1,2,1,0,2,0,0,DL3064,2,CKV_DOCKER_2;CKV_DOCKER_3,0,9,openjdk:17-jdk-slim,0abe2e57ffd01c1d
+q7b__P15__T0.8__R02,qwen2.5-coder:7b,q7b,P15,Java Spring Boot,database,0.8,2,2,stop,202,fenced_label,1,1,3,1,0,3,0,0,DL3064,2,CKV_DOCKER_2;CKV_DOCKER_3,0,12,openjdk:17-jdk-slim,900c5b77f4d3eea8
+q7b__P15__T0.8__R03,qwen2.5-coder:7b,q7b,P15,Java Spring Boot,database,0.8,3,3,stop,182,fenced_label,1,1,2,1,0,2,0,0,DL3064,2,CKV_DOCKER_2;CKV_DOCKER_3,0,10,openjdk:17-jdk-slim,c0aded9994a86958

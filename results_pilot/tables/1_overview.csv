@@ -1,0 +1,7 @@
+model_code,temperature,answers,with_dockerfile,parse_errors,cut_off_answers,ignore_pragmas
+q1.5b,0.0,6,6,0,0,0
+q1.5b,0.8,6,6,0,0,0
+q3b,0.0,6,6,0,0,0
+q3b,0.8,6,6,0,0,0
+q7b,0.0,6,6,0,0,0
+q7b,0.8,6,6,0,0,0

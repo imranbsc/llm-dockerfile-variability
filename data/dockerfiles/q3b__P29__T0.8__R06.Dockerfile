@@ -1,0 +1,26 @@
+# Use the official .NET SDK image as the base image
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
+
+# Set the working directory in the container
+WORKDIR /src
+
+# Copy the project files and restore dependencies
+COPY . .
+
+# Build the project
+RUN dotnet build --configuration Release
+
+# Create a runtime container
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the output from the build step
+COPY --from=build-env /src/bin/Release/net6.0/publish .
+
+# Expose the default port for the application
+EXPOSE 5000
+
+# Define the command to run the application
+ENTRYPOINT ["dotnet", "YourAppName.dll"]

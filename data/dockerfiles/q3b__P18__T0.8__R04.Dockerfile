@@ -1,0 +1,14 @@
+# Use the official Go image as the base image
+FROM golang:1.21
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Build the Go app
+RUN go build -o asynq-worker
+
+# Run the built application
+CMD ["./asynq-worker"]

@@ -1,0 +1,20 @@
+# Use a base image for PHP
+FROM php:7.4-fpm
+
+# Set the working directory in the container
+WORKDIR /var/www/html
+
+# Copy the current directory contents into the container at /var/www/html
+COPY . /var/www/html
+
+# Install dependencies
+RUN composer install --no-dev
+
+# Expose the default Laravel port
+EXPOSE 8000
+
+# Define environment variables
+ENV APP_ENV=production
+
+# Set the command to run the scheduled batch job
+CMD ["php", "artisan", "schedule:run"]

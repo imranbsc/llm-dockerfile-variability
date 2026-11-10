@@ -1,0 +1,43 @@
+# Use an official PHP runtime as a parent image
+FROM php:8.0-fpm
+
+# Set the working directory in the container
+WORKDIR /var/www/html
+
+# Copy the current directory contents into the container at /var/www/html
+COPY . /var/www/html
+
+# Install any needed packages specified in requirements.txt
+RUN apt-get update && apt-get install -y \
+    libzip-dev \
+    unzip \
+    && docker-php-ext-install zip pdo_mysql && docker-php-ext-configure pdo_mysql && docker-php-ext-install pdo pdo_mysql \
+    && docker-php-ext-install mbstring \
+    && docker-php-ext-install gmp \
+    && docker-php-ext-install bcmath \
+    && docker-php-ext-install soap \
+    && docker-php-ext-install xml
+
+# Install composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Install dependencies from composer.json
+RUN composer install
+
+# Copy the .env.example file to .env
+COPY .env.example .env
+
+# Run the artisan command to generate the application key
+RUN php artisan key:generate
+
+# Expose the port your application is running on
+EXPOSE 80
+
+# Define environment variable
+ENV APP_ENV=production
+
+# Run artisan command to migrate the database
+RUN php artisan migrate
+
+# Run the artisan serve command to start the server
+CMD ["php", "artisan", "serve", "--host=0.0.0.0"]

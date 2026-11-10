@@ -1,0 +1,23 @@
+# Use the official ASP.NET Core runtime as a parent image
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
+WORKDIR /app
+EXPOSE 80
+
+# Use the official ASP.NET Core SDK image to build the app
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+WORKDIR /src
+COPY ["YourProject.csproj", "./"]
+RUN dotnet restore
+COPY . .
+WORKDIR "/src/YourProject"
+RUN dotnet build "YourProject.csproj" -c Release -o /app/build
+
+# Publish the app to a slim image
+FROM build AS publish
+RUN dotnet publish "YourProject.csproj" -c Release -o /app/publish
+
+# Final stage that contains only the necessary files
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "YourProject.dll"]

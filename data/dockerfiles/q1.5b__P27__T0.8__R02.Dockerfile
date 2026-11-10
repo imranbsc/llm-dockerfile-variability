@@ -1,0 +1,26 @@
+# Use an official ASP.NET Core runtime as a parent image
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+WORKDIR /app
+COPY ./WebApp /app
+
+# Set the runtime version and enable ASP.NET Core app insight
+ARG ASPNETCORE_RUNTIME_VERSION=6.0
+ARG ASPNETCORE_ENVIRONMENT=Production
+RUN dotnet add package Microsoft.ApplicationInsights.AspNetCore.Extensions
+ENV ASPNETCORE_RUNTIME_VERSION=$ASPNETCORE_RUNTIME_VERSION
+ENV ASPNETCORE_ENVIRONMENT=$ASPNETCORE_ENVIRONMENT
+
+# Build the application for release
+RUN dotnet publish -c Release -o /app/publish
+
+# Use an official Nginx image as a child image
+FROM nginx:latest
+
+# Copy the published application to the Nginx directory
+COPY --from=base /app/publish /usr/share/nginx/html
+
+# Expose the default port for Nginx
+EXPOSE 80
+
+# Run Nginx
+CMD ["nginx", "-g", "daemon off;"]

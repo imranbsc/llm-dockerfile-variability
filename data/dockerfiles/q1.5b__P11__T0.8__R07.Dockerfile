@@ -1,0 +1,26 @@
+# Use an official Java runtime as a parent image
+FROM openjdk:17-jre-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Install any needed packages specified in pom.xml
+RUN apt-get update && apt-get install -y maven
+
+# Set the environment variable for the project
+ENV SPRING_PROFILES_ACTIVE development
+
+# Build the project
+RUN mvn clean install
+
+# Expose the port that the application will listen on
+EXPOSE 8080
+
+# Define environment variable
+ENV NAME World
+
+# Run the application
+CMD ["java", "-jar", "target/my-app.jar"]

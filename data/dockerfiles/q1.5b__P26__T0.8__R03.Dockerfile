@@ -1,0 +1,15 @@
+# Use the official .NET Core runtime as a parent image
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+WORKDIR /app
+
+# Set the working directory in the container
+RUN dotnet restore -r linux-x64
+
+# Copy the rest of the application source code into the container
+COPY . .
+
+# Expose the API port
+EXPOSE 5000
+
+# Run the ASP.NET Core app
+ENTRYPOINT ["dotnet", "YourNamespace.YourApp.dll"]

@@ -1,0 +1,51 @@
+{
+  "prompt_template": "Create a Dockerfile for {app}. Return the Dockerfile only.",
+  "prompts": {
+    "P01": "Create a Dockerfile for a REST API built in Node.js using Express. Return the Dockerfile only.",
+    "P02": "Create a Dockerfile for a server-rendered web application built in Node.js using Next.js. Return the Dockerfile only.",
+    "P03": "Create a Dockerfile for a background worker built in Node.js using BullMQ. Return the Dockerfile only.",
+    "P04": "Create a Dockerfile for a command-line tool built in Node.js using Commander.js. Return the Dockerfile only.",
+    "P05": "Create a Dockerfile for a scheduled batch job built in Node.js using node-cron. Return the Dockerfile only.",
+    "P06": "Create a Dockerfile for a REST API built in Python using Flask. Return the Dockerfile only.",
+    "P07": "Create a Dockerfile for a server-rendered web application built in Python using Django. Return the Dockerfile only.",
+    "P08": "Create a Dockerfile for a background worker built in Python using Celery. Return the Dockerfile only.",
+    "P09": "Create a Dockerfile for a command-line tool built in Python using Click. Return the Dockerfile only.",
+    "P10": "Create a Dockerfile for a scheduled batch job built in Python using APScheduler. Return the Dockerfile only.",
+    "P11": "Create a Dockerfile for a REST API built in Java using Spring Boot. Return the Dockerfile only.",
+    "P12": "Create a Dockerfile for a server-rendered web application built in Java using Spring Boot and Thymeleaf. Return the Dockerfile only.",
+    "P13": "Create a Dockerfile for a background worker built in Java using Spring Boot and RabbitMQ. Return the Dockerfile only.",
+    "P14": "Create a Dockerfile for a command-line tool built in Java using picocli. Return the Dockerfile only.",
+    "P15": "Create a Dockerfile for a scheduled batch job built in Java using Spring Batch. Return the Dockerfile only.",
+    "P16": "Create a Dockerfile for a REST API built in Go using Gin. Return the Dockerfile only.",
+    "P17": "Create a Dockerfile for a server-rendered web application built in Go using the html/template package. Return the Dockerfile only.",
+    "P18": "Create a Dockerfile for a background worker built in Go using Asynq. Return the Dockerfile only.",
+    "P19": "Create a Dockerfile for a command-line tool built in Go using Cobra. Return the Dockerfile only.",
+    "P20": "Create a Dockerfile for a scheduled batch job built in Go using robfig/cron. Return the Dockerfile only.",
+    "P21": "Create a Dockerfile for a REST API built in PHP using Laravel. Return the Dockerfile only.",
+    "P22": "Create a Dockerfile for a server-rendered web application built in PHP using Laravel and Blade. Return the Dockerfile only.",
+    "P23": "Create a Dockerfile for a background worker built in PHP using Laravel queues. Return the Dockerfile only.",
+    "P24": "Create a Dockerfile for a command-line tool built in PHP using Symfony Console. Return the Dockerfile only.",
+    "P25": "Create a Dockerfile for a scheduled batch job built in PHP using the Laravel task scheduler. Return the Dockerfile only.",
+    "P26": "Create a Dockerfile for a REST API built in C# using ASP.NET Core. Return the Dockerfile only.",
+    "P27": "Create a Dockerfile for a server-rendered web application built in C# using ASP.NET Core MVC. Return the Dockerfile only.",
+    "P28": "Create a Dockerfile for a background worker built in C# using the .NET Worker Service template. Return the Dockerfile only.",
+    "P29": "Create a Dockerfile for a command-line tool built in C# using System.CommandLine. Return the Dockerfile only.",
+    "P30": "Create a Dockerfile for a scheduled batch job built in C# using Quartz.NET. Return the Dockerfile only."
+  },
+  "seed_start": 1,
+  "num_ctx": 4096,
+  "num_predict": 1024,
+  "models": {
+    "qwen2.5-coder:1.5b": "q1.5b",
+    "qwen2.5-coder:3b": "q3b",
+    "qwen2.5-coder:7b": "q7b"
+  },
+  "runs_per_temperature": {
+    "0.0": 10,
+    "0.8": 10
+  },
+  "pilot_runs_per_temperature": {
+    "0.0": 3,
+    "0.8": 3
+  }
+}

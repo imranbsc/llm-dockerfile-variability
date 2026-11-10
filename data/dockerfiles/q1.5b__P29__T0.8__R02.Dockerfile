@@ -1,0 +1,35 @@
+# Use the official .NET Core SDK as the base image
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
+
+# Set the working directory in the container to /app
+WORKDIR /app
+
+# Copy the csproj file into the container
+COPY *.csproj ./
+
+# Restore the dependencies
+RUN dotnet restore
+
+# Copy the source code into the container
+COPY . .
+
+# Set the runtime as net5.0
+RUN dotnet publish -c Release -r linux-x64 --output publish
+
+# Build the Docker image
+FROM mcr.microsoft.com/dotnet/runtime:6.0 AS runtime
+
+# Set the working directory in the container to /app
+WORKDIR /app
+
+# Copy the published application from the build-env to the runtime container
+COPY --from=build-env /app/publish .
+
+# Expose the command-line tool's port
+EXPOSE 5000
+
+# Set the environment variable for the command-line tool
+ENV ASPNETCORE_ENVIRONMENT=Production
+
+# Run the command-line tool
+ENTRYPOINT ["dotnet", "YourToolName.dll"]

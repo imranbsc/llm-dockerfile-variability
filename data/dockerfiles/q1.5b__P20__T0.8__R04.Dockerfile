@@ -1,0 +1,32 @@
+# Use a public Go image as the base image
+FROM golang:1.16
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the Go source code into the container
+COPY main.go .
+
+# Install any necessary dependencies
+RUN go get -u -v
+
+# Build the Go application
+RUN go build -o batch_job
+
+# Define the command to run the batch job
+CMD ["./batch_job"]
+
+# Set the environment variable for the cron job schedule
+ENV CRON_SCHEDULE "0 0 * * *"  # Run the job every day at midnight
+
+# Copy the cron job configuration into the container
+COPY cron.json .
+
+# Set the cron job command to run the cron job
+CMD ["crontab", "-f", "cron.json"]
+
+# Expose the port where the batch job runs
+EXPOSE 8080
+
+# Run the container
+CMD ["sh", "-c", "while true; do sleep 10; done"]

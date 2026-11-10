@@ -1,0 +1,10 @@
+# Exact versions the scripts were tested with (13 October 2026, Python 3.13;
+# pingouin added 9 November 2026 for the repeated-measures ANOVA).
+# NumPy and SciPy at these versions need Python 3.12 or 3.13.
+# Install with:  pip install -r requirements.txt
+ollama==0.6.3
+pandas==3.0.6
+scipy==1.18.1
+matplotlib==3.11.2
+checkov==3.3.29
+pingouin==0.7.0

@@ -1,0 +1,29 @@
+# Use an official Go runtime as a parent image
+FROM golang:1.16 as build
+
+# Set the working directory in the container
+WORKDIR /go/src/app
+
+# Copy the current directory contents into the container at /go/src/app
+ADD . /go/src/app
+
+# Install any needed packages specified in the 'go.mod' file
+RUN go mod download
+
+# Build the Go application
+RUN go build -o app
+
+# Create a new stage for the final image
+FROM alpine:latest
+
+# Copy the built application from the build stage to the final stage
+COPY --from=build /go/src/app/app /app
+
+# Set the working directory in the final stage
+WORKDIR /app
+
+# Expose the default port for the Go application
+EXPOSE 8080
+
+# Run the Go application
+CMD ["./app"]

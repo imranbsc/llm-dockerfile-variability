@@ -1,0 +1,20 @@
+# Use an official .NET runtime as a parent image
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build-env
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Install any needed packages specified in requirements.txt
+RUN dotnet restore
+
+# Build the application
+RUN dotnet build -c Release -o /app/bin/Release/net5.0
+
+# Output the application
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS runtime-env
+WORKDIR /app
+COPY --from=build-env /app/bin/Release/net5.0 ./
+ENTRYPOINT ["dotnet", "YourApplicationName.dll"]

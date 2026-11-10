@@ -1,0 +1,29 @@
+# Use an official Go runtime as a parent image
+FROM golang:1.17 AS builder
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the go.mod and go.sum files
+COPY go.mod go.sum ./
+
+# Download all dependencies. Dependencies will be cached if the go.mod and go.sum files are not changed
+RUN go mod download
+
+# Copy the source code into the container at /app
+COPY . .
+
+# Build the Go app
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
+
+# Use a smaller image to run the app
+FROM alpine:latest
+
+# Set the working directory in the container
+WORKDIR /root/
+
+# Copy the binary from the builder stage
+COPY --from=builder /app/main .
+
+# Command to run the app
+CMD ["./main"]

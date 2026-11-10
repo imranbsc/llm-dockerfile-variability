@@ -1,0 +1,17 @@
+# Use an official Python runtime as a parent image
+FROM python:3.8-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Create a scheduled batch job using APScheduler
+COPY batch_job.py /app/batch_job.py
+
+# Run the scheduled batch job using APScheduler
+CMD ["python", "batch_job.py"]

@@ -1,0 +1,17 @@
+# Use an official Go runtime as a parent image
+FROM golang:1.16
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Build the Go application
+RUN go build -o batch_job .
+
+# Define environment variable
+ENV CRON_EXPRESSION "0 0 * * *" # Run the job every day at midnight
+
+# Run the scheduled batch job
+CMD ["cron", "-l", "0 0 * * *", "/app/batch_job"]

@@ -1,0 +1,33 @@
+run_id,code,level,line,column,message
+q1.5b__P01__T0.8__R02,DL3042,warning,11,1,Avoid use of cache directory with pip. Use `pip install --no-cache-dir <package>`
+q1.5b__P15__T0.0__R01,DL3064,warning,18,1,Potentially sensitive data should not be used in the `ARG` or `ENV` commands
+q1.5b__P15__T0.0__R01,DL3064,warning,19,1,Potentially sensitive data should not be used in the `ARG` or `ENV` commands
+q1.5b__P15__T0.0__R02,DL3064,warning,18,1,Potentially sensitive data should not be used in the `ARG` or `ENV` commands
+q1.5b__P15__T0.0__R02,DL3064,warning,19,1,Potentially sensitive data should not be used in the `ARG` or `ENV` commands
+q1.5b__P15__T0.0__R03,DL3064,warning,18,1,Potentially sensitive data should not be used in the `ARG` or `ENV` commands
+q1.5b__P15__T0.0__R03,DL3064,warning,19,1,Potentially sensitive data should not be used in the `ARG` or `ENV` commands
+q1.5b__P15__T0.8__R01,DL3064,warning,18,1,Potentially sensitive data should not be used in the `ARG` or `ENV` commands
+q1.5b__P15__T0.8__R01,DL3064,warning,19,1,Potentially sensitive data should not be used in the `ARG` or `ENV` commands
+q3b__P01__T0.8__R01,DL3042,warning,6,1,Avoid use of cache directory with pip. Use `pip install --no-cache-dir <package>`
+q3b__P15__T0.0__R01,DL3064,warning,16,1,Potentially sensitive data should not be used in the `ARG` or `ENV` commands
+q3b__P15__T0.0__R02,DL3064,warning,16,1,Potentially sensitive data should not be used in the `ARG` or `ENV` commands
+q3b__P15__T0.0__R03,DL3064,warning,16,1,Potentially sensitive data should not be used in the `ARG` or `ENV` commands
+q3b__P15__T0.8__R02,DL3064,warning,22,1,Potentially sensitive data should not be used in the `ARG` or `ENV` commands
+q3b__P15__T0.8__R03,DL3064,warning,15,1,Potentially sensitive data should not be used in the `ARG` or `ENV` commands
+q3b__P15__T0.8__R03,DL3064,warning,16,1,Potentially sensitive data should not be used in the `ARG` or `ENV` commands
+q3b__P15__T0.8__R03,DL3059,info,23,1,Multiple consecutive `RUN` instructions. Consider consolidation.
+q7b__P01__T0.8__R01,DL3042,warning,11,1,Avoid use of cache directory with pip. Use `pip install --no-cache-dir <package>`
+q7b__P01__T0.8__R02,DL3042,warning,11,1,Avoid use of cache directory with pip. Use `pip install --no-cache-dir <package>`
+q7b__P15__T0.0__R01,DL3064,warning,18,1,Potentially sensitive data should not be used in the `ARG` or `ENV` commands
+q7b__P15__T0.0__R01,DL3064,warning,19,1,Potentially sensitive data should not be used in the `ARG` or `ENV` commands
+q7b__P15__T0.0__R02,DL3064,warning,18,1,Potentially sensitive data should not be used in the `ARG` or `ENV` commands
+q7b__P15__T0.0__R02,DL3064,warning,19,1,Potentially sensitive data should not be used in the `ARG` or `ENV` commands
+q7b__P15__T0.0__R03,DL3064,warning,18,1,Potentially sensitive data should not be used in the `ARG` or `ENV` commands
+q7b__P15__T0.0__R03,DL3064,warning,19,1,Potentially sensitive data should not be used in the `ARG` or `ENV` commands
+q7b__P15__T0.8__R01,DL3064,warning,18,1,Potentially sensitive data should not be used in the `ARG` or `ENV` commands
+q7b__P15__T0.8__R01,DL3064,warning,19,1,Potentially sensitive data should not be used in the `ARG` or `ENV` commands
+q7b__P15__T0.8__R02,DL3064,warning,19,1,Potentially sensitive data should not be used in the `ARG` or `ENV` commands
+q7b__P15__T0.8__R02,DL3064,warning,21,1,Potentially sensitive data should not be used in the `ARG` or `ENV` commands
+q7b__P15__T0.8__R02,DL3064,warning,22,1,Potentially sensitive data should not be used in the `ARG` or `ENV` commands
+q7b__P15__T0.8__R03,DL3064,warning,21,1,Potentially sensitive data should not be used in the `ARG` or `ENV` commands
+q7b__P15__T0.8__R03,DL3064,warning,22,1,Potentially sensitive data should not be used in the `ARG` or `ENV` commands

@@ -1,0 +1,26 @@
+# Use an official OpenJDK runtime as a parent image
+FROM openjdk:17-jdk-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Make port 8080 available to the world outside this container
+EXPOSE 8080
+
+# Define environment variable for PostgreSQL connection settings
+ENV DB_URL=${DB_URL}
+ENV DB_USERNAME=${DB_USERNAME}
+ENV DB_PASSWORD=${DB_PASSWORD}
+ENV DB_NAME=${DB_NAME}
+
+# Add PostgreSQL JDBC driver to the classpath
+RUN curl https://jdbc.postgresql.org/download/postgresql-42.6.0.jar -o lib/postgresql-42.6.0.jar
+
+# Build the JAR file
+RUN mvn clean install
+
+# Run the JAR file
+CMD ["java", "-jar", "target/your-application-name.jar"]

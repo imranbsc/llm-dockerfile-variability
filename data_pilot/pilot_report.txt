@@ -1,0 +1,39 @@
+PILOT REPORT
+============================================================
+
+1. Temperature 0: does the model repeat itself?
+   model   prompt runs  different answers  different Dockerfiles*
+   q1.5b   P01       3                  1                       1
+   q1.5b   P15       3                  2                       2
+   q3b     P01       3                  1                       1
+   q3b     P15       3                  1                       1
+   q7b     P01       3                  1                       1
+   q7b     P15       3                  2                       2
+   Identical at temperature 0: NO - some repeats differ (report this!)
+
+2. Temperature 0.8: how different are the answers?
+   model   prompt runs  different answers  different Dockerfiles*
+   q1.5b   P01       3                  3                       3
+   q1.5b   P15       3                  3                       3
+   q3b     P01       3                  3                       3
+   q3b     P15       3                  3                       3
+   q7b     P01       3                  3                       3
+   q7b     P15       3                  3                       3
+
+   * after removing comments, blank lines and extra spaces
+
+3. Speed on this laptop
+   model   answers  median s  median tokens  tokens/s
+   q1.5b        12       7.0            156      25.3
+   q3b          12      15.9            170      12.8
+   q7b          12      25.5            149       6.4
+
+4. Estimated time for the full run (30 prompts x 13 runs = 390 answers per model)
+   q1.5b   about 0.8 hours
+   q3b     about 1.7 hours
+   q7b     about 2.8 hours
+   total   about 5.2 hours
+
+5. Was a Dockerfile found in each answer?
+   fenced_label    32
+   fenced_from     4

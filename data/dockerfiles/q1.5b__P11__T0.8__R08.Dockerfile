@@ -1,0 +1,24 @@
+# Use an official openjdk runtime as a parent image
+FROM openjdk:11-jdk-slim
+
+# Set the working directory in the container to /app
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Install any needed packages specified in package.json
+RUN apt-get update && apt-get install -y maven
+
+# Build the application using Maven
+RUN mvn clean install
+
+# Define environment variables
+ENV APP_NAME my-app
+ENV APP_PORT 8080
+
+# Expose the application port
+EXPOSE $APP_PORT
+
+# Run the application
+CMD ["java", "-jar", "target/my-app.jar"]

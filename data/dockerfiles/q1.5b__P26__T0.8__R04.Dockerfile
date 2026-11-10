@@ -1,0 +1,17 @@
+# Use a publicly available ASP.NET Core runtime image as the base image
+FROM mcr.microsoft.com/dotnet/core/runtime:5.0 AS base
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Install any needed packages specified in the 'requirements.txt' file
+RUN dotnet restore
+
+# Make port 5001 available to the world outside this container
+EXPOSE 5001
+
+# Run the app
+ENTRYPOINT ["dotnet", "YourProjectName.dll"]

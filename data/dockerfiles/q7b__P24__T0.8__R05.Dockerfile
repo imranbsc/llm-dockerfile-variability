@@ -1,0 +1,27 @@
+# Use an official PHP runtime as a parent image
+FROM php:7.4-cli
+
+# Install required packages
+RUN apt-get update && apt-get install -y \
+    git \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev
+
+# Install PHP extensions
+RUN docker-php-ext-install pdo_mysql zip
+
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Set working directory
+WORKDIR /app
+
+# Copy project files
+COPY . /app
+
+# Install project dependencies
+RUN composer install --no-dev --optimize-autoloader
+
+# Command to run the command-line tool
+CMD ["php", "bin/console"]

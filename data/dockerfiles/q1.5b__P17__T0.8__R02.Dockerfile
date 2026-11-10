@@ -1,0 +1,32 @@
+# Use a base Go image
+FROM golang:1.17 AS builder
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the go.mod and go.sum files
+COPY go.mod go.sum /app/
+
+# Copy the application files
+COPY . /app/
+
+# Install dependencies
+RUN go get -v -t ./...
+
+# Build the application
+RUN go build -o server
+
+# Create a final image with the application
+FROM alpine:latest
+
+# Set the working directory in the final image
+WORKDIR /app
+
+# Copy the built application into the final image
+COPY server /app/server
+
+# Expose the port the server will run on
+EXPOSE 8080
+
+# Run the server when the container starts
+CMD ["./server"]

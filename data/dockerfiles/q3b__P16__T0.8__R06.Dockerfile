@@ -1,0 +1,17 @@
+# Use an official Golang runtime as a parent image
+FROM golang:1.17-alpine
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Install any needed packages specified in go.mod
+RUN go mod download
+
+# Make port 80 available to the world outside this container
+EXPOSE 80
+
+# Run the app
+CMD ["go", "run", "./main.go"]

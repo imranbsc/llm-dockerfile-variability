@@ -1,0 +1,28 @@
+# Use a base .NET Core image
+FROM mcr.microsoft.com/dotnet/sdk:5.0 as build-env
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the csproj file and restore the dependencies
+COPY *.csproj ./
+RUN dotnet restore
+
+# Copy the rest of the project files and build
+COPY . ./src/
+RUN dotnet publish -c Release -o /app/publish
+
+# Use a lightweight runtime image
+FROM mcr.microsoft.com/dotnet/runtime:5.0
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the published application from the build-env to the runtime container
+COPY --from=build-env /app/publish ./
+
+# Expose the port used by Quartz.NET
+EXPOSE 5000
+
+# Define the entry point for the container
+ENTRYPOINT ["dotnet", "YourApp.dll"]

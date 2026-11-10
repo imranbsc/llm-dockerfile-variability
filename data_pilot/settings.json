@@ -1,0 +1,51 @@
+{
+  "prompt_template": "Write a Dockerfile for {app}. Reply with only the Dockerfile in one code block.",
+  "prompts": {
+    "P01": "Write a Dockerfile for a Python Flask web API that listens on port 5000; its dependencies are listed in requirements.txt. Reply with only the Dockerfile in one code block.",
+    "P02": "Write a Dockerfile for a Python Flask web API that listens on port 5000 and converts uploaded images with the ImageMagick command-line tool, which must be installed in the image; its dependencies are listed in requirements.txt. Reply with only the Dockerfile in one code block.",
+    "P03": "Write a Dockerfile for a Python Flask web API that listens on port 5000 and stores data in a PostgreSQL database whose connection settings come from environment variables; its dependencies are listed in requirements.txt. Reply with only the Dockerfile in one code block.",
+    "P04": "Write a Dockerfile for a Python FastAPI web API that listens on port 8000; its dependencies are listed in requirements.txt. Reply with only the Dockerfile in one code block.",
+    "P05": "Write a Dockerfile for a Python FastAPI web API that listens on port 8000 and converts uploaded images with the ImageMagick command-line tool, which must be installed in the image; its dependencies are listed in requirements.txt. Reply with only the Dockerfile in one code block.",
+    "P06": "Write a Dockerfile for a Python FastAPI web API that listens on port 8000 and stores data in a PostgreSQL database whose connection settings come from environment variables; its dependencies are listed in requirements.txt. Reply with only the Dockerfile in one code block.",
+    "P07": "Write a Dockerfile for a Node.js Express web API that listens on port 3000; its dependencies are listed in package.json. Reply with only the Dockerfile in one code block.",
+    "P08": "Write a Dockerfile for a Node.js Express web API that listens on port 3000 and converts uploaded images with the ImageMagick command-line tool, which must be installed in the image; its dependencies are listed in package.json. Reply with only the Dockerfile in one code block.",
+    "P09": "Write a Dockerfile for a Node.js Express web API that listens on port 3000 and stores data in a PostgreSQL database whose connection settings come from environment variables; its dependencies are listed in package.json. Reply with only the Dockerfile in one code block.",
+    "P10": "Write a Dockerfile for a TypeScript NestJS web API that listens on port 3000; its dependencies are listed in package.json. Reply with only the Dockerfile in one code block.",
+    "P11": "Write a Dockerfile for a TypeScript NestJS web API that listens on port 3000 and converts uploaded images with the ImageMagick command-line tool, which must be installed in the image; its dependencies are listed in package.json. Reply with only the Dockerfile in one code block.",
+    "P12": "Write a Dockerfile for a TypeScript NestJS web API that listens on port 3000 and stores data in a PostgreSQL database whose connection settings come from environment variables; its dependencies are listed in package.json. Reply with only the Dockerfile in one code block.",
+    "P13": "Write a Dockerfile for a Java Spring Boot web API that listens on port 8080; its dependencies are listed in pom.xml. Reply with only the Dockerfile in one code block.",
+    "P14": "Write a Dockerfile for a Java Spring Boot web API that listens on port 8080 and converts uploaded images with the ImageMagick command-line tool, which must be installed in the image; its dependencies are listed in pom.xml. Reply with only the Dockerfile in one code block.",
+    "P15": "Write a Dockerfile for a Java Spring Boot web API that listens on port 8080 and stores data in a PostgreSQL database whose connection settings come from environment variables; its dependencies are listed in pom.xml. Reply with only the Dockerfile in one code block.",
+    "P16": "Write a Dockerfile for a Go web API that listens on port 8080; its dependencies are listed in go.mod. Reply with only the Dockerfile in one code block.",
+    "P17": "Write a Dockerfile for a Go web API that listens on port 8080 and converts uploaded images with the ImageMagick command-line tool, which must be installed in the image; its dependencies are listed in go.mod. Reply with only the Dockerfile in one code block.",
+    "P18": "Write a Dockerfile for a Go web API that listens on port 8080 and stores data in a PostgreSQL database whose connection settings come from environment variables; its dependencies are listed in go.mod. Reply with only the Dockerfile in one code block.",
+    "P19": "Write a Dockerfile for an ASP.NET Core web API that listens on port 8080; its dependencies are listed in the .csproj file. Reply with only the Dockerfile in one code block.",
+    "P20": "Write a Dockerfile for an ASP.NET Core web API that listens on port 8080 and converts uploaded images with the ImageMagick command-line tool, which must be installed in the image; its dependencies are listed in the .csproj file. Reply with only the Dockerfile in one code block.",
+    "P21": "Write a Dockerfile for an ASP.NET Core web API that listens on port 8080 and stores data in a PostgreSQL database whose connection settings come from environment variables; its dependencies are listed in the .csproj file. Reply with only the Dockerfile in one code block.",
+    "P22": "Write a Dockerfile for a PHP Laravel web API that listens on port 8000; its dependencies are listed in composer.json. Reply with only the Dockerfile in one code block.",
+    "P23": "Write a Dockerfile for a PHP Laravel web API that listens on port 8000 and converts uploaded images with the ImageMagick command-line tool, which must be installed in the image; its dependencies are listed in composer.json. Reply with only the Dockerfile in one code block.",
+    "P24": "Write a Dockerfile for a PHP Laravel web API that listens on port 8000 and stores data in a PostgreSQL database whose connection settings come from environment variables; its dependencies are listed in composer.json. Reply with only the Dockerfile in one code block.",
+    "P25": "Write a Dockerfile for a Ruby on Rails web API that listens on port 3000; its dependencies are listed in Gemfile. Reply with only the Dockerfile in one code block.",
+    "P26": "Write a Dockerfile for a Ruby on Rails web API that listens on port 3000 and converts uploaded images with the ImageMagick command-line tool, which must be installed in the image; its dependencies are listed in Gemfile. Reply with only the Dockerfile in one code block.",
+    "P27": "Write a Dockerfile for a Ruby on Rails web API that listens on port 3000 and stores data in a PostgreSQL database whose connection settings come from environment variables; its dependencies are listed in Gemfile. Reply with only the Dockerfile in one code block.",
+    "P28": "Write a Dockerfile for a Rust Axum web API that listens on port 8080; its dependencies are listed in Cargo.toml. Reply with only the Dockerfile in one code block.",
+    "P29": "Write a Dockerfile for a Rust Axum web API that listens on port 8080 and converts uploaded images with the ImageMagick command-line tool, which must be installed in the image; its dependencies are listed in Cargo.toml. Reply with only the Dockerfile in one code block.",
+    "P30": "Write a Dockerfile for a Rust Axum web API that listens on port 8080 and stores data in a PostgreSQL database whose connection settings come from environment variables; its dependencies are listed in Cargo.toml. Reply with only the Dockerfile in one code block."
+  },
+  "seed_start": 1,
+  "num_ctx": 4096,
+  "num_predict": 2048,
+  "models": {
+    "qwen2.5-coder:1.5b": "q1.5b",
+    "qwen2.5-coder:3b": "q3b",
+    "qwen2.5-coder:7b": "q7b"
+  },
+  "runs_per_temperature": {
+    "0.0": 3,
+    "0.8": 10
+  },
+  "pilot_runs_per_temperature": {
+    "0.0": 3,
+    "0.8": 3
+  }
+}

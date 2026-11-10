@@ -1,0 +1,26 @@
+# Use an official Go runtime as a parent image
+FROM golang:1.17 AS builder
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . .
+
+# Build the application
+RUN go build -o myapp .
+
+# Use an official lightweight image for the final stage
+FROM alpine:latest
+
+# Set the working directory in the container
+WORKDIR /root/
+
+# Copy the static files from the builder stage
+COPY --from=builder /app/myapp .
+
+# Expose port 8080
+EXPOSE 8080
+
+# Run the application when the container launches
+CMD ["./myapp"]

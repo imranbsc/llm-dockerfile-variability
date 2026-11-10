@@ -1,0 +1,15 @@
+# Local environment and caches
+.venv/
+__pycache__/
+*.pyc
+
+# The hadolint binary is downloaded separately (see README.md)
+hadolint
+hadolint.exe
+
+# Local backups
+data_backup_*.tar.gz
+
+# OS files
+Thumbs.db
+.DS_Store

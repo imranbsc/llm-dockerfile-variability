@@ -1,0 +1,32 @@
+# Use an official Go runtime as a parent image
+FROM golang:1.17-alpine AS builder
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the go.mod and go.sum files
+COPY go.mod go.sum ./
+
+# Download all dependencies
+RUN go mod download
+
+# Copy the source code into the container
+COPY . .
+
+# Build the Go application
+RUN go build -o main .
+
+# Use an official lightweight runtime as a parent image
+FROM alpine:latest
+
+# Set the working directory in the container
+WORKDIR /root/
+
+# Copy the binary from the builder stage
+COPY --from=builder /app/main .
+
+# Expose port 8080
+EXPOSE 8080
+
+# Run the Go application
+CMD ["./main"]

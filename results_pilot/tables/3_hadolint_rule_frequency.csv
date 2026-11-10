@@ -1,0 +1,4 @@
+code,files_with_rule,pct_of_dockerfiles,pct_q1.5b_T0.0,pct_q1.5b_T0.8,pct_q3b_T0.0,pct_q3b_T0.8,pct_q7b_T0.0,pct_q7b_T0.8,message,level
+DL3064,15,41.666666666666664,50.0,16.666666666666668,50.0,33.333333333333336,50.0,50.0,Potentially sensitive data should not be used in the `ARG` or `ENV` commands,warning
+DL3042,4,11.11111111111111,0.0,16.666666666666668,0.0,16.666666666666668,0.0,33.333333333333336,Avoid use of cache directory with pip. Use `pip install --no-cache-dir <package>`,warning
+DL3059,1,2.7777777777777777,0.0,0.0,0.0,16.666666666666668,0.0,0.0,Multiple consecutive `RUN` instructions. Consider consolidation.,info

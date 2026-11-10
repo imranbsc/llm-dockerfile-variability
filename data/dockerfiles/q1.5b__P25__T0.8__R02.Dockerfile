@@ -1,0 +1,25 @@
+# Use an official PHP runtime as a parent image
+FROM php:8.1-fpm
+
+# Set the working directory in the container
+WORKDIR /var/www/html
+
+# Copy the current directory contents into the container at /var/www/html
+COPY . /var/www/html
+
+# Install any needed packages specified in requirements.txt
+RUN composer install --no-dev
+
+# Install Laravel task scheduler
+RUN composer require laravel/tinker
+RUN composer require predis/predis
+RUN composer require symfony/process
+
+# Configure Laravel task scheduler to run every 1 minute
+RUN echo "CRON_SCHEDULE=*/1 * * * * /usr/bin/php artisan schedule:run >> /dev/null 2>&1" > /var/www/html/.cron
+
+# Expose the default HTTP port
+EXPOSE 80
+
+# Run the command to start the Laravel scheduler
+CMD ["php", "artisan", "serve"]

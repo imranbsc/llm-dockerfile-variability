@@ -1,0 +1,32 @@
+# Use a base Go image
+FROM golang:1.17 AS builder
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the go.mod and go.sum files
+COPY go.mod go.sum ./
+
+# Copy the main Go file
+COPY main.go ./
+
+# Install any dependencies
+RUN go mod download
+
+# Build the Go application
+RUN go build -o worker
+
+# Create an environment for the worker to run in
+FROM alpine:latest
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the built worker binary into the container
+COPY --from=builder /app/worker .
+
+# Expose the port the worker will listen on
+EXPOSE 8080
+
+# Run the worker
+CMD ["./worker"]

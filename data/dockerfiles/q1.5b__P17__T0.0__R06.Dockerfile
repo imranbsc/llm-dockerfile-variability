@@ -1,0 +1,20 @@
+# Use an official Go runtime as a parent image
+FROM golang:1.16
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Install any needed packages specified in requirements.txt
+RUN go get -v -t ./...
+
+# Build the application
+RUN go build -o server
+
+# Expose the port the application will run on
+EXPOSE 8080
+
+# Run the application when the container launches
+CMD ["./server"]

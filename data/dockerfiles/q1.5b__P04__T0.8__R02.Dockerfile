@@ -1,0 +1,17 @@
+# Use an official Node.js runtime as a parent image
+FROM node:14
+
+# Set the working directory in the container to /usr/src/app
+WORKDIR /usr/src/app
+
+# Copy the package.json and package-lock.json files from the current directory into the container at /usr/src/app
+COPY package*.json ./
+
+# Install any needed packages specified in package.json
+RUN npm install
+
+# Copy the rest of the code from the current directory into the container at /usr/src/app
+COPY . .
+
+# Run the app in production mode
+CMD ["node", "bin/app.js"]

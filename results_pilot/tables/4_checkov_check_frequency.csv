@@ -1,0 +1,4 @@
+check_id,files_with_rule,pct_of_dockerfiles,pct_q1.5b_T0.0,pct_q1.5b_T0.8,pct_q3b_T0.0,pct_q3b_T0.8,pct_q7b_T0.0,pct_q7b_T0.8,check_name
+CKV_DOCKER_2,36,100.0,100.0,100.0,100.0,100.0,100.0,100.0,Ensure that HEALTHCHECK instructions have been added to container images
+CKV_DOCKER_3,36,100.0,100.0,100.0,100.0,100.0,100.0,100.0,Ensure that a user for the container has been created
+CKV2_DOCKER_4,3,8.333333333333334,0.0,16.666666666666668,0.0,0.0,0.0,33.333333333333336,Ensure that certificate validation isn't disabled with the pip '--trusted-host' option

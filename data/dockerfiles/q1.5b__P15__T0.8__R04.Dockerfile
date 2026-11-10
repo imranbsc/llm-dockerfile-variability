@@ -1,0 +1,11 @@
+# Use an official Java runtime as a parent image
+FROM openjdk:11-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Run the application when the container launches
+CMD ["java", "-jar", "batch-job.jar"]

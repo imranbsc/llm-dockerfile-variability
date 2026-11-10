@@ -1,0 +1,14 @@
+# Use an official Java runtime as a parent image
+FROM openjdk:11-jre-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the build jar file from the build context
+COPY target/my-spring-batch-job.jar /app/my-spring-batch-job.jar
+
+# Set the environment variable for the Spring Batch job
+ENV SPRING_BATCH_JOB_NAME=myBatchJob
+
+# Run the Spring Batch job when the container launches
+CMD ["java", "-jar", "my-spring-batch-job.jar", "--spring.batch.job.names=${SPRING_BATCH_JOB_NAME}"]

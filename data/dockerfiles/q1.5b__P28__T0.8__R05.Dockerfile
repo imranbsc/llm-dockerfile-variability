@@ -1,0 +1,35 @@
+# Use the official .NET SDK image as the base image
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the solution file into the container
+COPY *.sln .
+
+# Restore the solution dependencies
+RUN dotnet restore
+
+# Copy the source code into the container
+COPY ./src ./src
+
+# Build the application
+RUN dotnet build -c Release
+
+# Create a separate stage for the application
+FROM build AS publish
+
+# Publish the application
+RUN dotnet publish -c Release -o /app/publish
+
+# Use the official .NET Worker Service image as the base image for the worker service
+FROM mcr.microsoft.com/dotnet/worker:6.0 AS worker
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the publish output into the worker service container
+COPY --from=publish /app/publish .
+
+# Set the entry point for the worker service
+ENTRYPOINT ["dotnet", "MyWorkerService.dll"]

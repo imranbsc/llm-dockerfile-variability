@@ -1,0 +1,8 @@
+check_id,files_with_rule,pct_of_dockerfiles,occurrences,pct_q1.5b_T0.0,pct_q1.5b_T0.8,pct_q3b_T0.0,pct_q3b_T0.8,pct_q7b_T0.0,pct_q7b_T0.8,check_name
+CKV_DOCKER_2,1795,100.0,1795,100.0,100.0,100.0,100.0,100.0,100.0,Ensure that HEALTHCHECK instructions have been added to container images
+CKV_DOCKER_3,1777,98.99721448467966,1777,96.66666666666667,99.32885906040268,100.0,99.32659932659932,100.0,98.66666666666667,Ensure that a user for the container has been created
+CKV_DOCKER_7,111,6.183844011142061,111,0.0,2.684563758389262,0.0,3.7037037037037037,16.666666666666668,14.0,Ensure the base image uses a non latest version tag
+CKV2_DOCKER_4,40,2.2284122562674096,40,0.0,2.0134228187919465,0.0,0.0,3.3333333333333335,8.0,Ensure that certificate validation isn't disabled with the pip '--trusted-host' option
+CKV2_DOCKER_1,1,0.055710306406685235,1,0.0,0.33557046979865773,0.0,0.0,0.0,0.0,Ensure that sudo isn't used
+CKV_DOCKER_1,1,0.055710306406685235,1,0.0,0.0,0.0,0.0,0.0,0.3333333333333333,Ensure port 22 is not exposed
+CKV_DOCKER_4,1,0.055710306406685235,1,0.0,0.33557046979865773,0.0,0.0,0.0,0.0,Ensure that COPY is used instead of ADD in Dockerfiles

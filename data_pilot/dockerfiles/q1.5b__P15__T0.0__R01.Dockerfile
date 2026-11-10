@@ -1,0 +1,22 @@
+# Use an official OpenJDK runtime as a parent image
+FROM openjdk:11-jre-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Install any needed packages specified in pom.xml
+RUN mvn install
+
+# Make port 8080 available to the world outside this container
+EXPOSE 8080
+
+# Define environment variables
+ENV SPRING_DATASOURCE_URL=jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
+ENV SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}
+ENV SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+
+# Run the Spring Boot application
+CMD ["java", "-jar", "target/your-spring-boot-app.jar"]

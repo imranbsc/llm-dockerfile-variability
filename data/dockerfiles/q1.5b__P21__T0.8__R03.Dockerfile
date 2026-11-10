@@ -1,0 +1,22 @@
+# Use an official PHP runtime as a parent image
+FROM php:8.1-fpm
+
+# Set the working directory in the container
+WORKDIR /var/www/html
+
+# Copy the current directory contents into the container at /var/www/html
+COPY . /var/www/html
+
+# Install any needed packages specified in requirements.txt
+RUN composer install
+
+# Run any commands to install dependencies or customize the container
+
+# Expose the port(s) that your application listens on
+EXPOSE 80
+
+# Define environment variables
+ENV NAME World
+
+# Run the command to run the application
+CMD ["php", "artisan", "serve"]

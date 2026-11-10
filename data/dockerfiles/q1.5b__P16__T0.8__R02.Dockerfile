@@ -1,0 +1,17 @@
+# Use the official Go image as the base image
+FROM golang:1.16
+
+# Set the working directory in the container
+WORKDIR /go/src/app
+
+# Copy the Go source code into the container
+COPY . .
+
+# Install dependencies
+RUN go get -v -tags netgo -tags netgo_all -tags netgo_no_compat
+
+# Build the Go application
+RUN go build -o main
+
+# Set the entry point for the container
+ENTRYPOINT ["./main"]

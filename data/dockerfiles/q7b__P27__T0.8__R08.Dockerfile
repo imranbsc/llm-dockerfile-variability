@@ -1,0 +1,24 @@
+# Use the official .NET SDK image from Microsoft as the base image
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
+WORKDIR /app
+
+# Copy the project file and restore dependencies
+COPY *.csproj ./
+RUN dotnet restore
+
+# Copy the rest of the application code and build
+COPY . ./
+RUN dotnet build -c Release -o out
+
+# Use the official .NET runtime image as the base image
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
+WORKDIR /app
+
+# Copy the built application from the build-env stage
+COPY --from=build-env /app/out .
+
+# Expose the port the app runs on
+EXPOSE 80
+
+# Run the app
+ENTRYPOINT ["dotnet", "YourApp.dll"]

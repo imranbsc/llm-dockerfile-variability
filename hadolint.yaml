@@ -1,0 +1,5 @@
+# hadolint settings used for the study (the scripts pass this file with --config).
+# Every rule is active with its default severity and no rule is ignored.
+# The scripts read hadolint's JSON output, so the exit code does not matter.
+no-fail: true
+ignored: []

@@ -1,0 +1,27 @@
+# Use a official .NET Core runtime as a parent image
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the csproj file and restore any necessary packages
+COPY *.csproj ./
+RUN dotnet restore
+
+# Copy the rest of the project files
+COPY . .
+
+# Publish the application for deployment
+RUN dotnet publish -c Release -o /app/publish
+
+# Use an official nginx as a production server
+FROM nginx:latest
+
+# Copy the published application to the nginx server
+COPY /app/publish /usr/share/nginx/html
+
+# Expose the port that the application will listen on
+EXPOSE 80
+
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"]

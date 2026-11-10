@@ -1,0 +1,34 @@
+# Use an official PHP runtime as a parent image
+FROM php:8.1-fpm-alpine
+
+# Set the working directory in the container
+WORKDIR /var/www/html
+
+# Copy the local code to the container image
+COPY . .
+
+# Install system dependencies
+RUN apk add --no-cache \
+    build-base \
+    libpng-dev \
+    libonig-dev \
+    libzip-dev \
+    freetype-dev \
+    icu-dev \
+    libxml2-dev
+
+# Install PHP extensions
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
+
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Install project dependencies
+RUN composer install --optimize-autoloader --no-dev --no-interaction
+
+# Configure Laravel task scheduler
+RUN (crontab -l 2>/dev/null; echo "*/1 * * * * php /var/www/html/artisan schedule:run >> /dev/null 2>&1") | crontab -
+
+# Expose port 9000 and start php-fpm server
+EXPOSE 9000
+CMD ["php-fpm"]

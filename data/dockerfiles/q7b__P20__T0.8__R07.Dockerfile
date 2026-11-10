@@ -1,0 +1,31 @@
+# Use an official Go runtime as a parent image
+FROM golang:1.17
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the Go module and vendor directory
+COPY go.mod go.sum ./
+RUN go mod download
+
+# Copy the rest of the application code
+COPY . .
+
+# Build the Go application
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
+
+# Set the cron job schedule
+ENV CRON_SCHEDULE="0 1 * * *"  # Example: Run at 1 AM every day
+
+# Create a log file for cron to output to
+RUN touch /var/log/cron.log
+
+# Install cron
+RUN apt-get update && apt-get install -y cron && \
+    rm -rf /var/lib/apt/lists/*
+
+# Add the cron job to the crontab
+RUN echo "${CRON_SCHEDULE} /app/main >> /var/log/cron.log 2>&1" >> /etc/crontab
+
+# Start cron and the application
+CMD ["/sbin/cron", "-f"]

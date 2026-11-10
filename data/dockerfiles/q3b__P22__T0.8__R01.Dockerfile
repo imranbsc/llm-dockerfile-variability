@@ -1,0 +1,26 @@
+# Use an official PHP runtime as a parent image
+FROM php:7.4-apache
+
+# Set the working directory in the container
+WORKDIR /var/www/html
+
+# Copy the current directory contents into the container at /var/www/html
+COPY . /var/www/html
+
+# Install any needed packages specified in requirements.txt
+RUN apt-get update && apt-get install -y \
+    libpq-dev \
+    && docker-php-ext-install pdo_mysql \
+    && docker-php-ext-install mbstring \
+    && docker-php-ext-install xml \
+    && docker-php-ext-install json \
+    && docker-php-ext-install tokenizer \
+    && docker-php-ext-install bcmath \
+    && docker-php-ext-install gmp \
+    && docker-php-ext-install opcache
+
+# Run Composer to install dependencies
+RUN composer install
+
+# Start Apache
+CMD ["apache2-foreground"]

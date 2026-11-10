@@ -1,0 +1,35 @@
+# Use an official Go runtime as a parent image
+FROM golang:1.17 AS builder
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the go.mod and go.sum files
+COPY go.mod go.sum ./
+
+# Download all dependencies
+RUN go mod download
+
+# Copy the source code into the container
+COPY . .
+
+# Build the Go application
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
+
+# Use a lightweight image for the final container
+FROM alpine:latest
+
+# Set the working directory in the container
+WORKDIR /root/
+
+# Copy the binary from the builder stage
+COPY --from=builder /app/main .
+
+# Set the environment variable for the cron schedule
+ENV CRON_SCHEDULE="0 0 * * *"
+
+# Create a log file
+RUN touch /app.log
+
+# Define the command to run the cron job
+CMD ["sh", "-c", "while true; do /usr/bin/cron -f; sleep 1; done"]

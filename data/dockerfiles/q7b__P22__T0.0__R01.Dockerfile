@@ -1,0 +1,40 @@
+# Use an official PHP runtime as a parent image
+FROM php:7.4-fpm
+
+# Set environment variables
+ENV APP_ENV=production
+ENV APP_DEBUG=false
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
+    unzip \
+    git \
+    curl \
+    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Set working directory
+WORKDIR /var/www/html
+
+# Copy composer.json and composer.lock
+COPY composer.json composer.lock ./
+
+# Install dependencies
+RUN composer install --no-dev --optimize-autoloader
+
+# Copy application code
+COPY . .
+
+# Build assets
+RUN npm install
+RUN npm run production
+
+# Expose port 9000 and start PHP-FPM server
+EXPOSE 9000
+CMD ["php-fpm"]

@@ -1,0 +1,158 @@
+# Use an official PHP runtime as a parent image
+FROM php:8.1-cli
+
+# Set the working directory in the container
+WORKDIR /var/www/html
+
+# Copy the current directory contents into the container at /var/www/html
+COPY . /var/www/html
+
+# Install any needed packages specified in requirements.txt
+RUN apt-get update && apt-get install -y --no-cache php-pear php-zip php-bcmath php-xml php-mbstring php-gd php-fpm
+
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Install Laravel
+RUN composer global require laravel/installer
+
+# Install Laravel Queue Driver
+RUN composer require laravel/framework:^8.1
+
+# Install Laravel Queue
+RUN composer require --dev laravel/queue
+
+# Install Laravel Queue Redis
+RUN composer require --dev predis/predis
+
+# Install Laravel Queue SQS
+RUN composer require --dev aws/aws-sdk-php
+
+# Install Laravel Queue Gearman
+RUN composer require --dev gearman/gearman
+
+# Install Laravel Queue Beanstalkd
+RUN composer require --dev pda/pheanstalk
+
+# Install Laravel Queue RabbitMQ
+RUN composer require --dev php-amqplib/php-amqplib
+
+# Install Laravel Queue SQL Server
+RUN composer require --dev laravel-sqlserver
+
+# Install Laravel Queue Beanstalkd
+RUN composer require --dev laravel-queue-beanstalkd
+
+# Install Laravel Queue SNS
+RUN composer require --dev aws/aws-sdk-php
+
+# Install Laravel Queue SQS
+RUN composer require --dev aws/aws-sdk-php
+
+# Install Laravel Queue RabbitMQ
+RUN composer require --dev php-amqplib/php-amqplib
+
+# Install Laravel Queue SQL Server
+RUN composer require --dev laravel-sqlserver
+
+# Install Laravel Queue Beanstalkd
+RUN composer require --dev laravel-queue-beanstalkd
+
+# Install Laravel Queue SNS
+RUN composer require --dev aws/aws-sdk-php
+
+# Install Laravel Queue SQS
+RUN composer require --dev aws/aws-sdk-php
+
+# Install Laravel Queue RabbitMQ
+RUN composer require --dev php-amqplib/php-amqplib
+
+# Install Laravel Queue SQL Server
+RUN composer require --dev laravel-sqlserver
+
+# Install Laravel Queue Beanstalkd
+RUN composer require --dev laravel-queue-beanstalkd
+
+# Install Laravel Queue SNS
+RUN composer require --dev aws/aws-sdk-php
+
+# Install Laravel Queue SQS
+RUN composer require --dev aws/aws-sdk-php
+
+# Install Laravel Queue RabbitMQ
+RUN composer require --dev php-amqplib/php-amqplib
+
+# Install Laravel Queue SQL Server
+RUN composer require --dev laravel-sqlserver
+
+# Install Laravel Queue Beanstalkd
+RUN composer require --dev laravel-queue-beanstalkd
+
+# Install Laravel Queue SNS
+RUN composer require --dev aws/aws-sdk-php
+
+# Install Laravel Queue SQS
+RUN composer require --dev aws/aws-sdk-php
+
+# Install Laravel Queue RabbitMQ
+RUN composer require --dev php-amqplib/php-amqplib
+
+# Install Laravel Queue SQL Server
+RUN composer require --dev laravel-sqlserver
+
+# Install Laravel Queue Beanstalkd
+RUN composer require --dev laravel-queue-beanstalkd
+
+# Install Laravel Queue SNS
+RUN composer require --dev aws/aws-sdk-php
+
+# Install Laravel Queue SQS
+RUN composer require --dev aws/aws-sdk-php
+
+# Install Laravel Queue RabbitMQ
+RUN composer require --dev php-amqplib/php-amqplib
+
+# Install Laravel Queue SQL Server
+RUN composer require --dev laravel-sqlserver
+
+# Install Laravel Queue Beanstalkd
+RUN composer require --dev laravel-queue-beanstalkd
+
+# Install Laravel Queue SNS
+RUN composer require --dev aws/aws-sdk-php
+
+# Install Laravel Queue SQS
+RUN composer require --dev aws/aws-sdk-php
+
+# Install Laravel Queue RabbitMQ
+RUN composer require --dev php-amqplib/php-amqplib
+
+# Install Laravel Queue SQL Server
+RUN composer require --dev laravel-sqlserver
+
+# Install Laravel Queue Beanstalkd
+RUN composer require --dev laravel-queue-beanstalkd
+
+# Install Laravel Queue SNS
+RUN composer require --dev aws/aws-sdk-php
+
+# Install Laravel Queue SQS
+RUN composer require --dev aws/aws-sdk-php
+
+# Install Laravel Queue RabbitMQ
+RUN composer require --dev php-amqplib/php-amqplib
+
+# Install Laravel Queue SQL Server
+RUN composer require --dev laravel-sqlserver
+
+# Install Laravel Queue Beanstalkd
+RUN composer require --dev laravel-queue-beanstalkd
+
+# Install Laravel Queue SNS
+RUN composer require --dev aws/aws-sdk-php
+
+# Install Laravel Queue SQS
+RUN composer require --dev aws/aws-sdk-php
+
+# Install Laravel Queue RabbitMQ
+RUN composer require

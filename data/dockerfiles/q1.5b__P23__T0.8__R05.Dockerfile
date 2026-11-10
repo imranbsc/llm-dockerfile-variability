@@ -1,0 +1,33 @@
+# Use a generic PHP image as the base image
+FROM php:8.0-fpm
+
+# Install Composer
+RUN apt-get update && \
+    apt-get install -y \
+        curl \
+        unzip \
+        git \
+        unzip \
+        && \
+    rm -rf /var/lib/apt/lists/*
+
+# Set the working directory in the container
+WORKDIR /var/www/html
+
+# Copy the composer.json and composer.lock files into the container
+COPY composer.json composer.lock ./
+
+# Install the dependencies
+RUN composer install
+
+# Copy the application code into the container
+COPY . .
+
+# Set the permissions for the application
+RUN chown -R www-data:www-data .
+
+# Expose the default Laravel port
+EXPOSE 9000
+
+# Define the command to run the background worker
+CMD ["php artisan queue:work", "--daemon"]

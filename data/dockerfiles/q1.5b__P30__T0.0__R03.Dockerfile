@@ -1,0 +1,32 @@
+# Use a base image with .NET SDK
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the solution file and restore the dependencies
+COPY *.sln ./
+COPY *.csproj ./
+RUN dotnet restore
+
+# Copy the source code to the container
+COPY . .
+
+# Set the environment variable for Quartz.NET
+ENV Quartz.NET_CONFIG_FILE=Quartz.config
+
+# Build the application
+RUN dotnet build -c Release
+
+# Create a non-root user and switch to it
+RUN useradd -ms /bin/bash user
+USER user
+
+# Copy the built application to the container
+COPY --from=build-env /app/bin/Release/net6.0/publish ./
+
+# Expose the Quartz.NET scheduler port
+EXPOSE 5000
+
+# Run the Quartz.NET scheduler
+CMD ["dotnet", "Quartz.Scheduler.dll"]

@@ -1,0 +1,23 @@
+# Use a PHP runtime as a parent image
+FROM php:8.0-fpm
+
+# Set the working directory in the container
+WORKDIR /var/www/html
+
+# Copy the composer.json and composer.lock files to the container
+COPY composer.json composer.lock ./
+
+# Install any required packages using Composer
+RUN composer install --optimize-autoloader
+
+# Copy the rest of the application files to the container
+COPY . .
+
+# Create a cron job for the Laravel task scheduler
+RUN echo "* * * * * /usr/bin/php artisan schedule:run >> /var/log/cron.log 2>&1" >> /var/spool/cron/www-data
+
+# Expose the default HTTP port
+EXPOSE 80
+
+# Start the scheduler
+CMD ["php", "-S", "0.0.0.0:80", "artisan", "queue:work"]

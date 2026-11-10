@@ -1,0 +1,8 @@
+{
+  "date_utc": "2026-11-10T03:37:58+00:00",
+  "hadolint": "Haskell Dockerfile Linter 2.15.1",
+  "hadolint_options": "--config hadolint.yaml --no-fail --disable-ignore-pragma --format json",
+  "hadolint_config": "# hadolint settings used for the study (the scripts pass this file with --config).\n# Every rule is active with its default severity and no rule is ignored.\n# The scripts read hadolint's JSON output, so the exit code does not matter.\nno-fail: true\nignored: []\n",
+  "checkov": "3.3.29",
+  "checkov_options": "--framework dockerfile -o json --quiet --skip-download"
+}

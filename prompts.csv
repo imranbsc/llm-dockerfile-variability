@@ -1,0 +1,31 @@
+prompt_id,stack,scenario,framework,app
+P01,Node.js,rest_api,Express,a REST API built in Node.js using Express
+P02,Node.js,web_app,Next.js,a server-rendered web application built in Node.js using Next.js
+P03,Node.js,worker,BullMQ,a background worker built in Node.js using BullMQ
+P04,Node.js,cli,Commander.js,a command-line tool built in Node.js using Commander.js
+P05,Node.js,batch_job,node-cron,a scheduled batch job built in Node.js using node-cron
+P06,Python,rest_api,Flask,a REST API built in Python using Flask
+P07,Python,web_app,Django,a server-rendered web application built in Python using Django
+P08,Python,worker,Celery,a background worker built in Python using Celery
+P09,Python,cli,Click,a command-line tool built in Python using Click
+P10,Python,batch_job,APScheduler,a scheduled batch job built in Python using APScheduler
+P11,Java,rest_api,Spring Boot,a REST API built in Java using Spring Boot
+P12,Java,web_app,Spring Boot and Thymeleaf,a server-rendered web application built in Java using Spring Boot and Thymeleaf
+P13,Java,worker,Spring Boot and RabbitMQ,a background worker built in Java using Spring Boot and RabbitMQ
+P14,Java,cli,picocli,a command-line tool built in Java using picocli
+P15,Java,batch_job,Spring Batch,a scheduled batch job built in Java using Spring Batch
+P16,Go,rest_api,Gin,a REST API built in Go using Gin
+P17,Go,web_app,the html/template package,a server-rendered web application built in Go using the html/template package
+P18,Go,worker,Asynq,a background worker built in Go using Asynq
+P19,Go,cli,Cobra,a command-line tool built in Go using Cobra
+P20,Go,batch_job,robfig/cron,a scheduled batch job built in Go using robfig/cron
+P21,PHP,rest_api,Laravel,a REST API built in PHP using Laravel
+P22,PHP,web_app,Laravel and Blade,a server-rendered web application built in PHP using Laravel and Blade
+P23,PHP,worker,Laravel queues,a background worker built in PHP using Laravel queues
+P24,PHP,cli,Symfony Console,a command-line tool built in PHP using Symfony Console
+P25,PHP,batch_job,the Laravel task scheduler,a scheduled batch job built in PHP using the Laravel task scheduler
+P26,C#/.NET,rest_api,ASP.NET Core,a REST API built in C# using ASP.NET Core
+P27,C#/.NET,web_app,ASP.NET Core MVC,a server-rendered web application built in C# using ASP.NET Core MVC
+P28,C#/.NET,worker,the .NET Worker Service template,a background worker built in C# using the .NET Worker Service template
+P29,C#/.NET,cli,System.CommandLine,a command-line tool built in C# using System.CommandLine
+P30,C#/.NET,batch_job,Quartz.NET,a scheduled batch job built in C# using Quartz.NET

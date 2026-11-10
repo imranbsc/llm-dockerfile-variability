@@ -1,0 +1,17 @@
+# Use an official PHP image as the base image
+FROM php:7.4-fpm-alpine
+
+# Set the working directory in the container
+WORKDIR /var/www/html
+
+# Copy the PHP project files to the container
+COPY . /var/www/html
+
+# Install any required packages
+RUN composer install
+
+# Copy the scheduled tasks to the container
+COPY artisan schedule:run /usr/local/bin/
+
+# Set the entrypoint to run the scheduled tasks
+ENTRYPOINT ["sh", "-c", "php artisan schedule:run && php artisan serve"]
